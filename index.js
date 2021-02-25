@@ -13,5 +13,9 @@ require('./config/mongooseConfig')(app);
 app.listen(config.PORT, () => console.log(`Server is listening on ${config.PORT}`));
 
 app.get('/', (req, res) => {
-    res.send("work");
+
+    var organizations = [{name: "org1"}, {name: "org2"}];
+
+
+    res.render("landing", {organizations: organizations});
 })
