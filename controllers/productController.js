@@ -32,10 +32,36 @@ router.post("/", function(req,res){
         }
     });
 
+});
 
+router.get("/edit/:id", function(req,res){
+    Product.findById(req.params.id, function(err, product){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("products/editProduct.hbs", {product: product});
+        }
+    });
+});
+
+
+router.post("/:id", function(req,res){
+    Product.findByIdAndUpdate(req.params.id, erq.body.product, function(err, product){
+        if(err){
+            console.log(err);
+        }else{
+            product.updatedAt = Date.now();
+            product.updatedBy = Date.now();
+            product.save();
+            res.redirect("/products/" + product._id);
+        }
+    });
 });
 
 router.use('/order', orderController);
 router.use('/category', categoryController);
+
+
+
 
 module.exports = router;

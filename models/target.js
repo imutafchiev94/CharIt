@@ -18,3 +18,4 @@ var targetSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Target", targetSchema);
+
