@@ -1,11 +1,13 @@
-<form action="#" method="POST">
+<form action="user/{{user._id}}" method="POST">
 <img src="{{avatar}}" alt="Avatar">
-<input type="text" name="firstName" placeholder="firstName"></input>
-<input type="text" name="lastName" placeholder="lastName"></input>
-<input type="text" name="age" placeholder="age"></input>
+<input type="text" name="firstName" value="firstName" placeholder="firstName"></input>
+<input type="text" name="lastName" value="lastName" placeholder="lastName"></input>
+<input type="text" name="age" value="age" placeholder="age"></input>
 <p>{{description}}</p>
 <p>{{email}}</p>
 <p>{{city}}</p>
 <p>{{firstName}} {{lastName}}</p>
 <p>{{age}}</p>
+
+<button type="submit">Save</button>
 </form>

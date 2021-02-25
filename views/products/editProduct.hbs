@@ -1,3 +1,14 @@
-<form action="#" method="POST">
+<form action="/products/{{product._id}}" method="POST">
+<input type="text" name="title" value="title" placeholder="title"></input>
+<input type="text" name="description" value="description" placeholder="description"></input>
+<input type="text" name="price" value="price" placeholder="price"></input>
+<input type="text" name="category" value="category" placeholder="category"></input>
+<input type="text" name="quantity" value="quantity" placeholder="quantity"></input>
+<p>{{description}}</p>
+<p>{{email}}</p>
+<p>{{city}}</p>
+<p>{{firstName}} {{lastName}}</p>
+<p>{{age}}</p>
 
+<button type="submit">Save</button>
 </form>

@@ -7,9 +7,12 @@
 <p>{{address}}</p>
 <p>{{city}}</p>
 
-<ul>
+<a href="/charities/{{charity._id}}/donate">Donate</a>
+
+<a href="/charities/{{charity._id}}/target/new">Add Target</a>
+
 {{#each targets}}
-<li>{{this}}</li>
+<p>{{this.title}}</p>
+<a href="charities/target/{{this._id}}/editTarget">Edit Target</a>
 {{/each}}
-</ul>
 {{/with}}

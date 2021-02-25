@@ -1,0 +1,9 @@
+{{#with target}}
+<form action="/charities/{{charity._id}}" method="POST">
+  <input type="text" name="title" />
+  <input type="text" name="description"/>
+  <input type="text" name="targetSum"/>
+
+  <button type="submit">Create</button>
+  </form>
+{{/with}}
