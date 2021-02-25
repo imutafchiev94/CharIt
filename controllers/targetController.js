@@ -13,7 +13,7 @@ router.get("/edit/:id", function(req,res){
         if(err){
             console.log(err);
         }else{
-            res.render("charities/target/editTarget.hbs");
+            res.render("charities/target/editTarget.hbs", {target: target});
         }
     });
 
@@ -27,8 +27,8 @@ router.post("/", function(req,res){
     var title = req.body.title;
     var description = req.body.description;
     var charity = req.params.charity;
-    var createdBy = req.user._id;
-    var updatedBy = req.user._id;
+    var createdBy = req.user.username;
+    var updatedBy = req.user.username;
     var createdAt = Date.now();
     var updatedAt = Date.now();
 
@@ -38,7 +38,7 @@ router.post("/", function(req,res){
         if(err){
             console.log(err);
         }else{
-            res.redirect("/charities/" + charity);
+            res.redirect("/charities/" + target.charity);
         }
     });
 });
@@ -50,12 +50,26 @@ router.post("/:id", function(req,res){
             console.log(err);
         }else{
             target.updatedAt = Date.now();
-            target.updatedBy = req.user._id;
+            target.updatedBy = req.user.username;
             target.save();
             res.redirect("/charities/" + target.charity);
         }
     });
+});
 
+router.post("/delete/:id", function(req,res){
+    Target.findById(req.params.id, function(err, target){
+        if(err){
+            console.log(err);
+        }else{
+            target.deletedBy = req.user.username;
+            target.deletedAt = Date.now();
+
+            target.save();
+            res.redirect("/charities/" + target.charity);
+
+        }
+    });
 });
 
 
