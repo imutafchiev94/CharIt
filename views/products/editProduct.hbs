@@ -1,0 +1,11 @@
+<form action="/products/{{product._id}}" method="POST">
+{{#with product}}
+<input type="text" name="title" value="{{title}}" placeholder="title"></input>
+<input type="text" name="description" value="{{description}}" placeholder="description"></input>
+<input type="text" name="price" value="{{price}}" placeholder="price"></input>
+<input type="text" name="category" value="{{category}}" placeholder="category"></input>
+<input type="text" name="quantity" value="{{quantity}}" placeholder="quantity"></input>
+{{/with}}
+
+<button type="submit">Save</button>
+</form>

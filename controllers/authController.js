@@ -4,6 +4,7 @@ const FacebookStategy = require("passport-facebook").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/user");
 const authService = require("../services/authService");
+const jwt = require('jsonwebtoken');
 require("dotenv").config();
 
 const router = Router();
@@ -105,9 +106,8 @@ router.get(
 
 router.get(
   "/login/facebook/callback",
-  passport.authenticate("facebook", {
-    successRedirect: "/",
-    failureRedirect: "/login",
+  passport.authenticate("facebook", (req, res) => {
+    res.redirect('/');
   })
 );
 
@@ -128,5 +128,47 @@ router.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
+router.post("/login", async (req, res) => {
+    try {
+        let token = await authService.login(req.body);
+
+        res.cookie(process.env.COOKIE_SESSION_NAME, token);
+        res.redirect('/');
+    }catch (message) {
+        res.render('auth/login', {message});
+    }
+});
+
+router.get("/register", (req, res) => {
+    res.render("auth/register");
+  });
+  
+  router.post("/register", async (req, res) => {
+        const password = req.body.password;
+        const confirmPassword = req.body.confirmPassword;
+
+        if(password !== confirmPassword)
+        {
+            res.render('auth/register', {message: 'password missmatch'});
+            return;
+        }
+
+      try {
+          await authService.register(req.body);
+          
+          res.redirect('auth/login');
+      }catch (message) {
+          res.render('auth/register', {message});
+      }
+  });
+
+  router.get('/emailverification/:token', async (req, res) => {
+      try {
+          await authService.validateEmail(req.params.token);
+          res.render('verificationEmail');
+      } catch(message) {
+          res.redirect('/auth/login');
+      }
+  })
 
 module.exports = router;

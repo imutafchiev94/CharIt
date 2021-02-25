@@ -1,3 +1,5 @@
 {{#each products}}
-  <p>{{this}}</p>
+  <p>{{this.title}}</p>
+  <a href="/products/{{product._id}}">Product Details</a>
+  <hr>
 {{/each}}
