@@ -2,6 +2,7 @@ var express = require("express");
 var router  = express.Router({mergeParams:true});
 var Product = require("../models/product.js");
 var orderController = require('./orderController');
+var categoryController = require('./categoryController');
 
 router.get("/", function(req,res){
     Product.find({}, function(err, products){
@@ -35,5 +36,6 @@ router.post("/", function(req,res){
 });
 
 router.use('/order', orderController);
+router.use('/category', categoryController);
 
 module.exports = router;
