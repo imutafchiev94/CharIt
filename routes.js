@@ -16,7 +16,7 @@ router.use('/charities', charityController);
 router.use('/user', userController);
 router.use('/auth', authController);
 router.get('*', (req, res) => {
-    res.render('error', {title: 'Page not found'});
+    res.render('error/error', {title: 'Page not found'});
 })
 
 module.exports = router;
