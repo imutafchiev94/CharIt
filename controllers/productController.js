@@ -3,13 +3,15 @@ var router  = express.Router({mergeParams:true});
 var Product = require("../models/product.js");
 var orderController = require('./orderController');
 var categoryController = require('./categoryController');
+router.use('/order', orderController);
+router.use('/category', categoryController);
 
 router.get("/", function(req,res){
     Product.find({}, function(err, products){
         if(err){
             console.log(err);
         }else{
-            res.render("products", {products : products});
+            res.render("products/products.hbs", {products : products});
         }
     });
 });
@@ -58,8 +60,22 @@ router.post("/:id", function(req,res){
     });
 });
 
-router.use('/order', orderController);
-router.use('/category', categoryController);
+router.post("/delete/:id", function(req,res){
+    Product.findById(req.params.id, function(err,product){
+        if(err){
+            console.log(err);
+        }else{
+            product.deletedBy = req.user.username;
+            product.deletedAt = Date.now();
+
+            product.save();
+            res.redirect("/products");
+        }
+    });
+});
+
+
+
 
 
 

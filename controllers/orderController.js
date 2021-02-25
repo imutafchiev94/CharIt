@@ -22,8 +22,8 @@ router.post("/", async function (req, res) {
     var product = req.params.productId;
     var target = req.body.target;
     var charity = await charityService.getCharityByTargetId(req.body.target)
-    var createdBy = req.user._id;
-    var updatedBy = req.user._id;
+    var createdBy = req.user.username;
+    var updatedBy = req.user.username;
     var createdAt = Date.now();
     var updatedAt = Date.now();
     var newOrder = {
@@ -48,6 +48,21 @@ router.post("/", async function (req, res) {
   } catch (message) {
     res.redirect("/products/", { message });
   }
+});
+
+
+router.post("/delete/:id", function(req,res){
+  order.findById(req.params.id, function(err, order){
+    if(err){
+      console.log(err);
+    }else{
+      order.deletedBy = req.user.username;
+      order.deletedAt = Date.now();
+
+      order.save();
+      res.redirect("/products");
+    }
+  });
 });
 
 module.exports = router;
