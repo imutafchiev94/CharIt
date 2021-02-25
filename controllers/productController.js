@@ -9,7 +9,7 @@ router.get("/", function(req,res){
         if(err){
             console.log(err);
         }else{
-            res.render("products", {products : products});
+            res.render("products/products", {products : products});
         }
     });
 });
@@ -28,7 +28,7 @@ router.post("/", function(req,res){
         if(err){
             console.log(err);
         }else{
-            res.redirect("/products");
+            res.redirect("products/products");
         }
     });
 
