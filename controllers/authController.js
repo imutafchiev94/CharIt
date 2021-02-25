@@ -44,7 +44,6 @@ passport.use(
           updatedAt: Date.now(),
           createdBy: name,
           updatedBy: name,
-          isDeleted: false,
           avatar: picture.url,
         };
         new User(userData).save();
@@ -88,7 +87,6 @@ passport.use(
           updatedAt: Date.now(),
           createdBy: name,
           updatedBy: name,
-          isDeleted: false,
         };
 
         new User(userData).save();
@@ -156,7 +154,7 @@ router.get("/register", (req, res) => {
       try {
           await authService.register(req.body);
           
-          res.redirect('auth/login');
+          res.redirect('login');
       }catch (message) {
           res.render('auth/register', {message});
       }
@@ -167,7 +165,7 @@ router.get("/register", (req, res) => {
           await authService.validateEmail(req.params.token);
           res.render('verificationEmail');
       } catch(message) {
-          res.redirect('/auth/login');
+          res.redirect('auth/login', {message});
       }
   })
 

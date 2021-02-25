@@ -10,8 +10,10 @@ const cloudinary = require('cloudinary').v2;
 
 cloudinary.config(cloudinaryConfig);
 
-async function register(data, avatar) {
-    let salt = bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
+async function register(data) {
+    console.log(data);
+    console.log(parseInt(process.env.SALT_ROUNDS))
+    let salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
 
     let hash = await bcrypt.hash(data.password, salt);
 
@@ -35,18 +37,16 @@ async function register(data, avatar) {
             lastName:data.lastName,
             age: data.age,
             isEmailVerified: false,
-            isDeleted: false,
             city: data.city,
-            role: role._id,
+            role: role,
             avatar: ""
         }
 
-        await cloudinary.uploader(avatar, {resource_type: "image"}).
-        then(function(file) {userData.avatar = file.url}).
-        catch(function(err) {console.log(err)});
+        // await cloudinary.uploader(avatar, {resource_type: "image"}).
+        // then(function(file) {userData.avatar = file.url}).
+        // catch(function(err) {console.log(err)});
 
-        let user = new User(userData);
-
+        user = await new User(userData);
         let emailToken = jwt.sign(
             {_id: user._id},
             process.env.MAIL_VALIDATION_SECRET
