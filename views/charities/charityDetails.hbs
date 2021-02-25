@@ -1,0 +1,15 @@
+{{#with charity}}
+<h2>{{title}}</h2>
+<p>{{description}}</p>
+<p>{{email}}</p>
+<p>{{phoneNumber}}</p>
+<p>{{iban}}</p>
+<p>{{address}}</p>
+<p>{{city}}</p>
+
+<ul>
+{{#each targets}}
+<li>{{this}}</li>
+{{/each}}
+</ul>
+{{/with}}

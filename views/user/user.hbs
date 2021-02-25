@@ -1,0 +1,33 @@
+{{#with user}}
+<h2>Hello, {{username}}</h2>
+<img src="{{avatar}}" alt="Avatar">
+<p>{{description}}</p>
+<p>{{email}}</p>
+<p>{{city}}</p>
+<p>{{firstName}} {{lastName}}</p>
+<p>{{age}}</p>
+
+<p>Products</p>
+<ul>
+{{#each products}}
+  <li>{{this}}</li>
+{{/each}}
+</ul>
+
+<hr>
+
+<p>Charities</p>
+<ul>
+{{#each charities}}
+  <li>{{this}}</li>
+{{/each}}
+</ul>
+
+<hr>
+
+<p>Orders</p>
+<ul>
+{{#each orders}}
+  <li>{{this}}</li>
+{{/each}}
+</ul>
