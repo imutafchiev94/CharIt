@@ -1,4 +1,5 @@
 const {Router} = require('express');
+const category = require('../models/category');
 const router = Router();
 const Target = require('../models/target');
 
@@ -14,7 +15,14 @@ router.get("/:id/edit", function(req,res){
         if(err){
             res.render("charities/charities.hbs", {message: err});
         }else{
-            res.render("charities/target/editTarget.hbs", {target: target});
+
+            category.find({deletedAt: null}, function(err, categories){
+                if(err){
+                    res.render("charities/target/editTarget.hbs", {target: target, message: err});
+                }else{
+                    res.render("charities/target/editTarget.hbs", {target: target, categories: categories});
+                }
+            });           
         }
     });
    
@@ -25,7 +33,19 @@ router.get("/:id", function(req,res){
         if(err){
             res.render("charities/charities.hbs", {message: err});
         }else{
-            res.render("charities/target/charityDetails.hbs");
+
+            category.find({deletedAt : null}, function(err, categories){
+
+
+                if(err){
+                    res.render("charities/target/charityDetails.hbs", {target: target});
+                }else{
+                    res.render("charities/target/charityDetails.hbs", {target: target, categories: categories});
+                }
+
+            });
+
+            
         }
     });
 });

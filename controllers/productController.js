@@ -62,7 +62,14 @@ router.get("/:id", function(req,res){
         if(err){
             console.log();
         }else{
-            res.render("products/productDetails.hbs", {product: product});
+            Category.find({deletedAt:null}, function(err, categories){
+                if(err){
+                    res.render("products/productDetails.hbs", {product: product, message: err});
+                }else{
+                    res.render("products/productDetails.hbs", {product: product, categories : categories});
+                }
+            });
+            
         }
     }).lean();
 });
@@ -73,15 +80,13 @@ router.get("/:id/edit", function(req,res){
             res.render("products/products.hbs", {message: err});
         }else{
 
-            Category.find({}, function(err,categories){
+            Category.find({deletedAt : null}, function(err,categories){
                 if(err){
-                    res.render("products/editProduct.hbs", {product: product});
+                    res.render("products/editProduct.hbs", {product: product, message: err});
                 }else{
                     res.render("products/editProduct.hbs", {product: product, categories: categories});
                 }
-            }).lean();
-
-            
+            }).lean();            
         }
     }).lean();
 });
@@ -103,11 +108,11 @@ router.post("/:id", function(req,res){
 router.post("/:id/delete", function(req,res){
     Product.findById(req.params.id, function(err,product){
         if(err){
-            console.log(err);
+            res.redirect("/products", {message: err});
         }else{
             product.deletedBy = req.user.username;
             product.deletedAt = Date.now();
-
+            
             product.save();
             res.redirect("/products");
         }

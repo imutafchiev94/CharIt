@@ -1,25 +1,47 @@
 const { Router } = require("express");
 const order = require("../models/order");
+const Category = require("../models/");
 const charityService = require("../services/charityService");
 const targetService = require("../services/targetService");
+
 
 const router = Router();
 
 router.get("/new/:id", async function (req, res) {
   try {
     var charities = await targetService.getAllByCharityId(id);
-    res.render("products/order/newOrder.hbs", { charities });
+
+    Category.find({deletedAt : null}, function(err, categories){
+      if(err){
+        res.render("products/order/newOrder.hbs", { charities, message : err });
+      }else{
+        res.render("productes/order/newOrder.hbs", { charities, categories: categories } );
+      }
+    });
+   
   } catch (message) {
-    res.render("products/order/newOrder.hbs", { charities, message });
+
+    Category.find({ deletedAt : null }, function(err, categories){
+      if(!err){
+        res.render("products/order/newOrder.hbs", { charities, message, categories });
+      }
+    });
   }
 });
 
 router.get("/:id", function(req,res){
   order.findById(req.params.id, function(err, order){
     if(err){
-      console.log(err);
+      res.render("products/order/orderDetails.hbs", {message: err});
     }else{
-      res.render("products/order/orderDetails.hbs");
+
+      Category.find({deletedAt : null}, function(err, categories){
+        if(err){
+          res.render("products/order/orderDetails.hbs", {order : order, message : err});
+        }else{
+          res.render("products/order/orderDetails.hbs", {order : order, categories: categories});
+        }
+      });     
     }
   });
 });
