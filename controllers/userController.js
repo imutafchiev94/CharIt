@@ -22,7 +22,7 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: "http://localhost:3000/auth/login/facebook/callback",
+      callbackURL: "http://localhost:3000/user/login/facebook/callback",
       profileFields: ["id", "displayName", "name", "email", "photos"],
     },
     async function (accessToken, refreshToken, profile, done) {
@@ -59,7 +59,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/login/google/callback",
+      callbackURL: "http://localhost:3000/user/login/google/callback",
       profileFields: ["id", "displayName", "name", "email", "photos"],
     },
     async function (accessToken, refreshToken, profile, done) {
@@ -171,12 +171,12 @@ router.post("/login", async (req, res) => {
         res.cookie(process.env.COOKIE_SESSION_NAME, token);
         res.redirect('/');
     }catch (message) {
-        res.render('auth/login', {message});
+        res.render('user/login', {message});
     }
 });
 
 router.get("/register", (req, res) => {
-    res.render("auth/register");
+    res.render("user/register");
   });
   
   router.post("/register", multipartMiddleware, async (req, res) => {
@@ -185,7 +185,7 @@ router.get("/register", (req, res) => {
 
         if(password !== confirmPassword)
         {
-            res.render('auth/register', {message: 'password missmatch'});
+            res.render('user/register', {message: 'password missmatch'});
             return;
         }
 
@@ -197,17 +197,17 @@ router.get("/register", (req, res) => {
           
           res.redirect('login');
       }catch (message) {
-          res.render('auth/register', {message});
+          res.render('user/register', {message});
       }
   });
 
   router.get('/emailverification/:token', async (req, res) => {
       try {
           await authService.emailVerification(req.params.token);
-          res.render('auth/verificationEmail');
+          res.render('user/verificationEmail');
       } catch(message) {
         console.log(message);
-          res.render('auth/login', {message});
+          res.render('user/login', {message});
       }
   })
   
