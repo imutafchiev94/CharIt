@@ -1,0 +1,10 @@
+{{#with order}}
+    <p>Target: {{target.title}}</p>
+    <p>Sum: {{sum}}</p>
+    <p>Product: {{product.title}}</p>
+    <p>Charity: {{charity.title}}</p>
+
+<form action="/products/{{product._id}}/order/{{_id}}/delete" method="post">
+    <button type="submit">Delete order</button>
+</form>
+{{/with}}

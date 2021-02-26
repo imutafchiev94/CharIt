@@ -1,13 +1,14 @@
-<form action="/charities/{{charity._id}}" method="POST">
+<h2>{{message}}</h2>
 {{#with charity}}
-    <input type="text" name="title" value="{{title}}" placeholder="title">
-    <input type="text" name="description" value="{{description}}" placeholder="description">
-    <input type="text" name="email" value="{{email}}" placeholder="email">
-    <input type="text" name="phoneNumber" value="{{phoneNumber}}" placeholder="phoneNumber">
-    <input type="text" name="iban" value="{{iban}}" placeholder="iban">
-    <input type="text" name="address" value="{{address}}" placeholder="address">
-    <input type="text" name="city" value="{{city}}" placeholder="city">
+    <h2>Edit {{title}}</h2>
+    <form action="/charities/{{charity._id}}" method="POST">
+        <input type="text" name="title" value="{{title}}" placeholder="title">
+        <input type="text" name="description" value="{{description}}" placeholder="description">
+        <input type="text" name="email" value="{{email}}" placeholder="email">
+        <input type="text" name="phoneNumber" value="{{phoneNumber}}" placeholder="phoneNumber">
+        <input type="text" name="iban" value="{{iban}}" placeholder="iban">
+        <input type="text" name="address" value="{{address}}" placeholder="address">
+        <input type="text" name="city" value="{{city}}" placeholder="city">
+        <button type="submit">Save</button>
+    </form>
 {{/with}}
-
-    <input type="submit" value="Create">
-</form>

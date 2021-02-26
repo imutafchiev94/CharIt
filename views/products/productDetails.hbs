@@ -1,12 +1,12 @@
 {{#with product}}
-<h2>{{title}}</h2>
-<p>{{description}}</p>
-<p>{{price}}</p>
-<p>{{quantity}}</p>
+    <h2>{{title}}</h2>
+    <p>{{description}}</p>
+    <p>{{price}}</p>
+    <p>{{quantity}}</p>
+
+    <a href="/products/{{_id}}/edit">Edit Product</a>
+
+    <form action="/products/{{_id}}/delete" method="post">
+        <button type="submit">Delete product</button>
+    </form>
 {{/with}}
-
-<a href="/products/{{product._id}}/edit">Edit Product</a>
-
-<form action="/products/{{product._id}}/delete" method="post">
-<button type="submit">Delete product</button>
-</form>
