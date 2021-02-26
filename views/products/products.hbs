@@ -1,18 +1,106 @@
-<h1>CATEGORIES</h1>
-<a href="/products/category/new">Add Category</a>
-{{#each categories}}
-  <p>{{this.title}}</p>
-  <a href="/products/category/{{this._id}}/edit">Edit Category</a>
-    <form action="products/category/{{this._id}}/delete" method="POST">
-      <button type="submit">Delete Category</button>
-    </form>
-  <hr>
-{{/each}}
+<section class="">
+      <div class="container mt-30 mb-30 p-30">
+        <div class="section-content">
+          <div class="row">
+            <div class="col-sm-12 col-md-9">
+              <div class="row multi-row-clearfix">
+                <div class="products">
+			
+				<!-- повтаряш за всеки продукт -->
+                {{#each products}}
+                  <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
+                    <div class="product">
+                      <span class="tag-sale">Honorable cause!</span>
+                      <div class="product-thumb"> 
+                        <img alt="product" src="{{this.avatar}}" class="img-responsive img-fullwidth">
+                        <div class="overlay">
+                          <div class="btn-add-to-cart-wrapper">
+                            <a class="btn btn-theme-colored btn-sm pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Buy it</a>
+                          </div>
+                          <div class="btn-product-view-details">
+                            <a class="btn btn-default btn-theme-colored btn-sm pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="/products/{{this._id}}">Details</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="product-details text-center">
+                        <a href="/products/{{this._id}}"><h5 class="product-title">{{this.title}}</h5></a>
+                        <div class="price"><ins><span class="amount">{{this.price}}лв.</span></ins></div>
+                      </div>
+                    </div>
+                  </div>
+                {{/each}}
+                  
+                
+                                 
+                 
+                
 
-<h1>PRODUCTS</h1>
-<a href="/products/new">Add Product</a>
-{{#each products}}
-  <h3>{{this.title}}</h3>
-  <a href="/products/{{this._id}}">Product Details</a>
-  <hr>
-{{/each}}
+
+				<!-- пагинатора е тука -->
+                  <div class="col-md-12">
+                    <nav>
+                      <ul class="pagination theme-colored">
+                        <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a> </li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+
+                        <li> <a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
+                      </ul>
+                    </nav>
+                  </div>
+				  
+				  
+				  
+				  
+                </div>
+              </div>
+            </div>
+          <div class="col-sm-12 col-md-3">
+            <div class="sidebar sidebar-right mt-sm-30">
+              <div class="widget">
+                <h5 class="widget-title line-bottom">Search by name</h5>
+                <div class="search-form">
+                  <form>
+                    <div class="input-group">
+                      <input type="text" placeholder="Click to Search" class="form-control search-input">
+                      <span class="input-group-btn">
+                      <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+			  
+			  <!-- категории -->
+            {{#each categories}}
+              <div class="widget">
+                <h5 class="widget-title line-bottom">Categories</h5>
+                <div class="categories">
+                  <ul class="list list-border angle-double-right">
+                    <li><a href="#">{{this.title}}<span>({{this.products.length}})</span></a></li>
+                  </ul>
+                </div>
+              </div>
+          {{/each}}
+			  
+			  <!-- благородностти -->
+              <div class="widget">
+                <h5 class="widget-title line-bottom">Popular Charities</h5>
+                <div class="categories">
+            {{#each charities}}
+                  <ul class="list list-border angle-double-right">
+                    <li><a href="/charities/{{this._id}}">{{this.title}}</a></li>
+                  </ul>
+            {{/each}}
+                </div>
+              </div>
+			  
+
+
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
