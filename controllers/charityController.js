@@ -12,6 +12,10 @@ router.get("/", function(req,res){
     res.render("charities/charities.hbs");
 });
 
+router.get("/new", function(req, res){
+        res.render("charities/newCharity.hbs");
+});
+
 router.get("/:id/edit", function(req,res){
     Charity.findById(req.params.id, function(err,charity){
         if(err){
