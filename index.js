@@ -11,7 +11,6 @@ require('./config/mongooseConfig')(app);
 
 
 app.use(express.static(path.join(__dirname, 'public')));
-console.log(path.join(__dirname, 'public'));
 app.use(router);
 
 app.listen(config.PORT, () => console.log(`Server is listening on ${config.PORT}`));
