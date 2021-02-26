@@ -1,18 +1,22 @@
 {{#with charity}}
-<h2>{{title}}</h2>
-<p>{{description}}</p>
-<p>{{email}}</p>
-<p>{{phoneNumber}}</p>
-<p>{{iban}}</p>
-<p>{{address}}</p>
-<p>{{city}}</p>
+    <h2>Charity: {{title}}</h2>
+    <p>Description: {{description}}</p>
+    <p>Email: {{email}}</p>
+    <p>Phone: {{phoneNumber}}</p>
+    <p>IBAN: {{iban}}</p>
+    <p>Address: {{address}}</p>
+    <p>City: {{city}}</p>
+
+    <a href="/charities/{{_id}}/edit">Edit charity</a>
+{{/with}}
+
+<hr>
 
 <a href="/charities/{{charity._id}}/donation/new">Donate</a>
-
 <a href="/charities/{{charity._id}}/target/new">Add Target</a>
 
+<h2>Targets</h2>
 {{#each targets}}
-<p>{{this.title}}</p>
-<a href="charities/{{charity._id}}/target/{{this._id}}/edit">Edit Target</a>
+    <h3>{{this.title}}</h3>
+    <a href="charities/{{charity._id}}/target/{{this._id}}/edit">Edit Target</a>
 {{/each}}
-{{/with}}

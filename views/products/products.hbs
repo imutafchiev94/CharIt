@@ -1,21 +1,21 @@
 <h1>CATEGORIES</h1>
-<a href="products/category/new">Add Category</a>
+<a href="/products/category/new">Add Category</a>
 
 {{#each categories}}
   <p>{{this.title}}</p>
-  <a href="products/category/{{this._id}}/edit">Edit Category</a>
-  <form action="products/category/{{this._id}}/delete" method="POST">
-  <button type="submit">Delete Category</button>
-  </form>
+  <a href="/products/category/{{this._id}}/edit">Edit Category</a>
+    <form action="products/category/{{this._id}}/delete" method="POST">
+      <button type="submit">Delete Category</button>
+    </form>
   <hr>
 {{/each}}
 
 <h1>PRODUCTS</h1>
 {{#each products}}
   <p>{{this.title}}</p>
-  <a href="products/{{this._id}}">Product Details</a>
+  <a href="/products/{{this._id}}">Product Details</a>
     <form action="products/{{this._id}}/delete" method="POST">
-  <button type="submit">Delete Category</button>
-  </form>
+      <button type="submit">Delete Category</button>
+    </form>
   <hr>
 {{/each}}

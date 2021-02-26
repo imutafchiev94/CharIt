@@ -9,15 +9,15 @@ router.use('/donation', donationController);
 router.use('/target', targetController);
 
 router.get("/", function(req,res){
-    res.render("/charities/charities.hbs");
+    res.render("charities/charities.hbs");
 });
 
 router.get("/:id/edit", function(req,res){
     Charity.findById(req.params.id, function(err,charity){
         if(err){
-            console.log(err);
+            res.render("charities/charityDetails.hbs", {message: err, charity: charity});
         }else{
-            res.render("/charities/editCharity.hbs", {charity: charity});
+            res.render("charities/editCharity.hbs", {charity: charity});
         }
     }).lean();
 });
@@ -26,9 +26,9 @@ router.get("/:id/edit", function(req,res){
 router.get("/:id", function(req,res){
     Charity.findById(req.params.id, function(err, charity){
         if(err){
-            console.log();
+            res.render("charities/charities.hbs", {message : err});
         }else{
-            res.render("/charities/charityDetails.hbs", {charity: charity});
+            res.render("charities/charityDetails.hbs", {charity: charity});
         }
     }).lean();
 });
@@ -55,9 +55,9 @@ router.post("/", function(req,res){
 
     Charity.create(newCharity, function(err, charity){
         if(err){
-            console.log(err);
+            res.render("charities/charities.hbs", {message : err});
         }else{
-            res.redirect("charities/" + charity._id);
+            res.redirect("/charities/" + charity._id);
         }
     });
 });
@@ -65,7 +65,7 @@ router.post("/", function(req,res){
 router.post("/:id", function(req,res){
     Charity.findByIdAndUpdate(req.params.id, req.body.charity, function(err,charity){
         if(err){
-            console.log(err);
+            res.redirect("/charities/" + charity._id, {message: err});
         }else{
             charity.updatedAt = Date.now();
             charity.updatedBy = req.user.username;
@@ -78,7 +78,7 @@ router.post("/:id", function(req,res){
 router.post("/:id/delete", function(req,res){
     Charity.findById(req.params.id, function(err, charity){
         if(err){
-            console.log(err);
+            res.redirect("/charities", {message: err});
         }else{
             charity.deletedAt = Date.now();
             charity.deletedBy = req.user.username;
@@ -87,9 +87,6 @@ router.post("/:id/delete", function(req,res){
         }
     });
 });
-
-
-
 
 
 

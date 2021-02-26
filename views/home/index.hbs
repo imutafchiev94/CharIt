@@ -2,6 +2,6 @@
 <a href="/auth/login">Log In</a>
 <a href="/auth/register">Sign Up</a>
 
-{{#if isAuth}}
-<a href="/user/{{user.id}}">Profile</a>
+{{#if isAuthenticated}}
+    <a href="/user/{{user._id}}">Profile</a>
 {{/if}}

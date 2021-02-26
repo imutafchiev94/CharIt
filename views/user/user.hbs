@@ -1,13 +1,14 @@
 {{#with user}}
-<h2>Hello, {{username}}</h2>
-<img src="{{avatar}}" alt="Avatar">
-<p>{{description}}</p>
-<p>{{email}}</p>
-<p>{{city}}</p>
-<p>{{firstName}} {{lastName}}</p>
-<p>{{age}}</p>
+  <h2>Hello, {{username}}</h2>
+  <img src="{{avatar}}" alt="Avatar">
+  <p>{{description}}</p>
+  <p>{{email}}</p>
+  <p>{{city}}</p>
+  <p>{{firstName}} {{lastName}}</p>
+  <p>{{age}}</p>
 
-<a href="/user/{{user._id}}">Edit profile</a>
+  <a href="/user/{{_id}}">Edit profile</a>
+{{/with}}
 
 <p>Products</p>
 <ul>

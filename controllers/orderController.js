@@ -50,7 +50,7 @@ router.post("/", async function (req, res) {
 
     order.create(newOrder, function (err, target) {
       if (err) {
-        console.log(err);
+        res.redirect("/products", {message : err});
       } else {
         res.redirect("/products");
       }
@@ -64,7 +64,7 @@ router.post("/", async function (req, res) {
 router.post("/:id/delete", function(req,res){
   order.findById(req.params.id, function(err, order){
     if(err){
-      console.log(err);
+      res.redirect("/product", {message : err});
     }else{
       order.deletedBy = req.user.username;
       order.deletedAt = Date.now();
