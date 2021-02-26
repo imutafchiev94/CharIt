@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/imutafchiev94/CharIt#readme",
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "cloudinary": "^1.25.0",
     "connect-multiparty": "^2.2.0",
     "cookie-parser": "^1.4.5",
