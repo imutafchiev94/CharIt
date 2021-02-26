@@ -13,7 +13,7 @@ router.get("/", function(req,res){
         }else{
             res.render("products/products.hbs", {products : products});
         }
-    });
+    }).lean();
 });
 
 router.get("/new", function(req, res){
