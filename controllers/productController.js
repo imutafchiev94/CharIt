@@ -9,7 +9,7 @@ router.use('/category', categoryController);
 router.get("/", function(req,res){
     Product.find({}, function(err, products){
         if(err){
-            console.log(err);
+            res.render("products/products.hbs", { message : err});
         }else{
             res.render("products/products.hbs", {products : products});
         }
