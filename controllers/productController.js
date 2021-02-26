@@ -1,6 +1,7 @@
 var express = require("express");
 var router  = express.Router({mergeParams:true});
 var Product = require("../models/product.js");
+var Category = require("../models/category.js");
 var orderController = require('./orderController');
 var categoryController = require('./categoryController');
 router.use('/order', orderController);
@@ -11,7 +12,15 @@ router.get("/", function(req,res){
         if(err){
             res.render("products/products.hbs", { message : err});
         }else{
-            res.render("products/products.hbs", {products : products});
+
+            Category.find({}, function(err, categories){
+                if(err){
+                    res.render("products/products.hbs", {products : products});
+                }else{
+                    res.render("products/products.hbs", {products : products, categories: categories});
+                }
+            }).lean();
+
         }
     }).lean();
 });

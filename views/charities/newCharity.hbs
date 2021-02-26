@@ -1,12 +1,12 @@
 <h2>{{message}}</h2>
 <h2>Add charity</h2>
 <form action="/charities" method="POST">
-    <input type="text" name="title" placeholder="title">
-    <input type="text" name="description" placeholder="description">
-    <input type="text" name="email" placeholder="email">
-    <input type="text" name="phoneNumber" placeholder="phoneNumber">
-    <input type="text" name="iban" placeholder="iban">
-    <input type="text" name="address" placeholder="address">
-    <input type="text" name="city" placeholder="city">
+    <input type="text" name="charity[title]" placeholder="title">
+    <input type="text" name="charity[description]" placeholder="description">
+    <input type="text" name="charity[email]" placeholder="email">
+    <input type="text" name="charity[phoneNumber]" placeholder="phoneNumber">
+    <input type="text" name="charity[iban]" placeholder="iban">
+    <input type="text" name="charity[address]" placeholder="address">
+    <input type="text" name="charity[city]" placeholder="city">
     <button type="submit">Create</button>
 </form>

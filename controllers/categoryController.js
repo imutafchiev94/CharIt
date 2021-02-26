@@ -12,7 +12,7 @@ router.get("/:id/edit", function(req,res){
         if(err){
             res.redirect("/:id", {message : err});
         }else{
-            res.render("products/category/edit.hbs", {category: category});
+            res.render("products/category/editCategory.hbs", {category: category});
         }
     }).lean();
 });

@@ -12,10 +12,7 @@
 
 <h1>PRODUCTS</h1>
 {{#each products}}
-  <p>{{this.title}}</p>
+  <h3>{{this.title}}</h3>
   <a href="/products/{{this._id}}">Product Details</a>
-    <form action="products/{{this._id}}/delete" method="POST">
-      <button type="submit">Delete Product</button>
-    </form>
   <hr>
 {{/each}}

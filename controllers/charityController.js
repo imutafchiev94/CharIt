@@ -9,7 +9,14 @@ router.use('/donation', donationController);
 router.use('/target', targetController);
 
 router.get("/", function(req,res){
-    res.render("charities/charities.hbs");
+    Charity.find({}, function(err, charities){
+        if(err){
+            res.render("charities/charities.hbs", {message : err});
+        }else{
+            res.render("charities/charities.hbs", {charities: charities});
+        }
+    });
+    
 });
 
 router.get("/new", function(req, res){

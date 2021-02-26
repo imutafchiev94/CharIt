@@ -1,10 +1,13 @@
 <h2>{{message}}</h2>
 {{#with user}}
     <form action="user/{{_id}}" method="POST">
-        <img src="{{avatar}}" alt="Avatar">
         <input type="text" name="firstName" value="{{firstName}}" placeholder="firstName"></input>
         <input type="text" name="lastName" value="{{lastName}}" placeholder="lastName"></input>
         <input type="text" name="age" value="{{age}}" placeholder="age"></input>
+        <input type="file" id="actual-btn" name="avatar" hidden/>
+        <label for="actual-btn" class="upload-button">Избери файл</label>
+        <span id="file-chosen">Няма избрани файлове</span>
+
         <button type="submit">Save</button>
     </form>
 {{/with}}
