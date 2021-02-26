@@ -28,7 +28,7 @@ router.post("/", function(req,res){
     var quantity = req.body.quantity;
     //TODO:ADD MORE
 
-    var newProdcut = {title: title, description: description, price: price, quantity: quantity};
+    var newProduct = {title: title, description: description, price: price, quantity: quantity};
 
     Product.create(newProduct, function(err, product){
         if(err){
