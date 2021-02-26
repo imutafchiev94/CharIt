@@ -7,9 +7,9 @@ const targetService = require("../services/targetService");
 
 const router = Router();
 
-router.get("/new/:id", async function (req, res) {
+router.get("/new/", async function (req, res) {
   try {
-    var charities = await targetService.getAllByCharityId(id);
+    var charities = await charityService.getAll();
 
     Category.find({deletedAt : null}, function(err, categories){
       if(err){

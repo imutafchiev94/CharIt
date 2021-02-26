@@ -2,7 +2,7 @@ const Category = require('../models/category');
 const Product = require('../models/product');
 
 function getAllCategories() {
-    return Category.find({}, (err, categories) => {
+    return Category.find({deletedAt: null}, (err, categories) => {
         if(err) {
             console.log(err);
         }

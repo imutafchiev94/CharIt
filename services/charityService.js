@@ -3,7 +3,7 @@ const User = require('../models/user');
 const Target = require('../models/target');
 
 async function getAll() {
-    let charities = await Charity.find({}).populate("targets").lean();
+    let charities = await Charity.find({deletedAt: null}).populate("targets").lean();
     return charities;
 }
 

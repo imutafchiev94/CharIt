@@ -3,6 +3,7 @@ const Charity = require('../models/charity');
 const router = Router();
 const donationController = require('./donationController');
 const targetController = require('./targetController');
+const targetService = require('../services/targetService');
 
 
 router.use('/donation', donationController);
@@ -34,14 +35,20 @@ router.get("/:id/edit", function(req,res){
 });
 
 
-router.get("/:id", function(req,res){
-    Charity.findById(req.params.id, function(err, charity){
-        if(err){
-            res.render("charities/charities.hbs", {message : err});
-        }else{
-            res.render("charities/charityDetails.hbs", {charity: charity});
-        }
-    }).lean();
+router.get("/:id", async function(req,res){
+    try{
+        var targets = await targetService.getAllByCharityId(req.params.id);
+        Charity.findById(req.params.id, function(err, charity){
+            if(err){
+                res.render("charities/charities.hbs", {message : err});
+            }else{
+                res.render("charities/charityDetails.hbs", {charity: charity, targets});
+            }
+        }).lean();
+    }catch(message) {
+        console.log(message);
+    }
+    
 });
 
 router.post("/", function(req,res){
