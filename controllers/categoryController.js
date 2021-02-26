@@ -1,5 +1,6 @@
 const {Router} = require('express');
 const router = Router();
+const Category = require('../models/category');
 
 
 router.get("/new", function(req,res){

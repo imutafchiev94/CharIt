@@ -1,5 +1,6 @@
 const {Router} = require('express');
 const router = Router();
+const Target = require('../models/target');
 
 
 router.get("/new", function(req,res){
@@ -16,8 +17,17 @@ router.get("/:id/edit", function(req,res){
             res.render("charities/target/editTarget.hbs", {target: target});
         }
     });
+   
+});
 
-    
+router.get("/:id", function(req,res){
+    Target.findById(req.params.id, function(err, target){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("charities/target/charityDetails.hbs");
+        }
+    });
 });
 
 router.post("/", function(req,res){

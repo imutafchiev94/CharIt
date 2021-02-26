@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const charity = require('../models/charity');
+const Charity = require('../models/charity');
 const router = Router();
 const donationController = require('./donationController');
 const targetController = require('./targetController');

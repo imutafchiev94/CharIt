@@ -14,6 +14,16 @@ router.get("/new/:id", async function (req, res) {
   }
 });
 
+router.get("/:id", function(req,res){
+  order.findById(req.params.id, function(err, order){
+    if(err){
+      console.log(err);
+    }else{
+      res.render("products/order/orderDetails.hbs");
+    }
+  });
+});
+
 router.post("/", async function (req, res) {
   //TODO IVO Find charity by target and send target from request!
   try {
