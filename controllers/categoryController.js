@@ -13,7 +13,7 @@ router.get("/:id/edit", function(req,res){
         }else{
             res.render("products/category/edit.hbs", {category: category});
         }
-    });
+    }).lean();
 });
 
 
