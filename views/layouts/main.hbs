@@ -113,25 +113,42 @@
           <nav id="menuzord-right" class="menuzord orange no-bg">
             <a class="menuzord-brand pull-left flip" href="javascript:void(0)"><img src="images/logo-wide.png" alt=""></a>
             <ul class="menuzord-menu">
-              <li class="active"><a href="#home">Home</a> 
+              {{#if isAdmin}}
+              <li><a href="/products">Categories</a>
+                <ul class="dropdown">
+                  {{#each categories}}
+                    <li><a href="/products/{{this._id}}">{{this.title}}</a></li>      
+                  {{/each}}        
+                  <li><a href="products/category/new">Add Category</a></li>                                    
+                </ul>
+              </li>
+              {{/if}}
+              <li class="active"><a href="/">Home</a> 
 			  <!-- home, market|cats......, charities, news, contacts             login -->
                 
               </li>
-              <li><a href="#market">Market</a>
+              <li><a href="/products">Market</a>
                 <ul class="dropdown">
 				<!-- TODO: Cycle categories -->
-                  <li><a href="features-preloader.html">Preloaders</a></li>                                                  
+                  {{#each categories}}
+                    <li><a href="/products/{{this._id}}">{{this.title}}</a></li>      
+                  {{/each}}                                            
                 </ul>
               </li>
-			   <li><a href="#charities">Charities</a> 
+			   <li><a href="/charities">Charities</a> 
 			   <li><a href="#news">News</a> 
 			   <li><a href="#contact">Contact Us</a> 
 			   
 			 <li><a href="#market"><img src="images/avatar.png"></a>
                 <ul class="dropdown">
-				<!-- TODO: Cycle categories -->
-                  <li><a href="features-preloader.html">Login</a></li>     
-					<li><a href="features-preloader.html">Register</a></li>  				  
+                  {{#if isAuthenticated}}
+                    <li><a href="#profile">Profile</a></li>   
+                    <hr>  
+					          <li><a href="auth/logout">Logout</a></li>  	
+                  {{else}}
+                    <li><a href="/auth/login">Login</a></li>     
+					          <li><a href="auth/register">Register</a></li>  	
+                  {{/if}}
                 </ul>
               </li>
 
