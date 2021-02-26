@@ -5,19 +5,17 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/user");
 const authService = require("../services/authService");
 const jwt = require('jsonwebtoken');
+const multipart = require('connect-multiparty');
+const userService = require('../services/userService');
+const Role = require('../models/role');
 require("dotenv").config();
 
+const multipartMiddleware = multipart();
+
 const router = Router();
+var loggedUser;
 
-passport.serializeUser(function (user, done) {
-  done(null, user.id);
-});
 
-passport.deserializeUser(function (id, done) {
-  User.findById(id).then((user) => {
-    done(null, user);
-  });
-});
 
 passport.use(
   new FacebookStategy(
@@ -30,10 +28,11 @@ passport.use(
     async function (accessToken, refreshToken, profile, done) {
       try {
         var user = await User.findOne({ email: profile.emails[0].value });
-        console.log(user);
       } catch {}
       if (!user) {
+        let role = await Role.findOne({name: 'user'});
         const { email, name, first_name, last_name, picture } = profile._json;
+        console.log(picture);
         const userData = {
           username: email,
           firstName: first_name,
@@ -44,9 +43,11 @@ passport.use(
           updatedAt: Date.now(),
           createdBy: name,
           updatedBy: name,
-          avatar: picture.url,
+          role: role,
+          avatar: picture.data.url,
         };
         new User(userData).save();
+        loggedUser = user;
       }
       return done(null, profile);
     }
@@ -64,7 +65,7 @@ passport.use(
     async function (accessToken, refreshToken, profile, done) {
       try {
         var user = await User.findOne({ email: profile.emails[0].value });
-        console.log(profile);
+       
       } catch {}
       if (!user) {
         const {
@@ -74,7 +75,9 @@ passport.use(
           picture,
           email,
           email_verified,
-        } = profile._json;
+        } = profile._json
+        ;
+        let role = await Role.findOne({name: 'user'});
 
         const userData = {
           username: email,
@@ -87,6 +90,7 @@ passport.use(
           updatedAt: Date.now(),
           createdBy: name,
           updatedBy: name,
+          role: role,
         };
 
         new User(userData).save();
@@ -97,18 +101,39 @@ passport.use(
   )
 );
 
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
+
 router.get(
   "/login/facebook",
   passport.authenticate("facebook", { scope: "email" })
 );
 
-router.get(
-  "/login/facebook/callback",
-  passport.authenticate("facebook", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-  })
-);
+router.get('/login/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  async function(req, res) {
+    // Successful authentication, redirect home.
+    try {
+      let user = await userService.getUserByEmail(req.user.emails[0].value);
+      let token = jwt.sign(
+        {_id: user._id, username: req.user.displayName, role: user.role.name, charities: user.charities.map(a => a.authorId), products: user.products.map(a => a.authorId), avatar: user.avatar},
+        process.env.USER_SESSION_SECRET
+    );
+  
+      res.cookie(process.env.COOKIE_SESSION_NAME, token);
+    } catch(message) {
+      console.log(message);
+    }
+    
+    res.redirect('/');
+  });
 
 router.get(
   "/login/google",
@@ -117,10 +142,22 @@ router.get(
 
 router.get(
   "/login/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-  })
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  async function(req, res) {
+    try {
+      console.log(req.user);
+      let user = await userService.getUserByEmail(req.user.emails[0].value);
+      let token = jwt.sign(
+        {_id: user._id, username: req.user.displayName, role: user.role.name, charities: user.charities.map(a => a.authorId), products: user.products.map(a => a.authorId), avatar: user.avatar},
+        process.env.USER_SESSION_SECRET
+    );
+  
+      res.cookie(process.env.COOKIE_SESSION_NAME, token);
+    } catch(message) {
+      console.log(message);
+    }
+    res.redirect('/');
+  }
 );
 
 router.get("/login", (req, res) => {
@@ -142,7 +179,7 @@ router.get("/register", (req, res) => {
     res.render("auth/register");
   });
   
-  router.post("/register", async (req, res) => {
+  router.post("/register", multipartMiddleware, async (req, res) => {
         const password = req.body.password;
         const confirmPassword = req.body.confirmPassword;
 
@@ -153,7 +190,10 @@ router.get("/register", (req, res) => {
         }
 
       try {
-          await authService.register(req.body);
+
+          let filename = req.files.avatar.path;
+
+          await authService.register(req.body, filename);
           
           res.redirect('login');
       }catch (message) {
@@ -170,5 +210,13 @@ router.get("/register", (req, res) => {
           res.render('auth/login', {message});
       }
   })
+  
+  router.get('/logout', async (req, res) => {
+      res.clearCookie(process.env.USER_SESSION_SECRET);
+
+      res.send("/");
+  })
+
+  
 
 module.exports = router;
