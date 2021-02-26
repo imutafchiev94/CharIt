@@ -1,3 +1,75 @@
+<section>
+      <div class="container">
+        <div class="section-content">
+          <div class="row">
+            <div class="product">
+              <div class="col-md-5">
+                <div class="product-image">
+                  <div class="zoom-gallery">
+                    <a href="http://placehold.it/320x360" title="Title Here 1"><img src="http://placehold.it/320x360" alt=""></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="product-summary">
+                  <h2 class="product-title">Old Boxers</h2>
+  
+                  <div class="price"> <ins><span class="amount">$160.00</span></ins> </div>
+                  <div class="short-description">
+                    <p>Rarely used. Only couple of holes (none on the important parts!). Donec volutpat purus tempor sem molestie, sed blandit lacus posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut posuere mollis nulla ut consectetur.</p>
+                  </div>
+                  <div class="tags"><strong>Charity:</strong> Help Nicolas!</div>
+                  <div class="category"><strong>Category:</strong> <a href="#">Jackets</a>, <a href="#">Shirts</a></div>
+
+                  <div class="cart-form-wrapper mt-30">
+                    <form enctype="multipart/form-data" method="post" class="cart">
+                      <input type="hidden" value="productID" name="add-to-cart">
+                      <table class="table variations no-border">
+                        <tbody>
+                          <tr>
+                            <td class="name">Amount</td>
+                            <td class="value">
+                              <div class="quantity buttons_added">
+                                <input type="button" class="minus" value="-">
+                                <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                <input type="button" class="plus" value="+">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <button class="single_add_to_cart_button btn btn-theme-colored" type="submit">Add to cart</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="horizontal-tab product-tab">
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1">
+                      <h3>Product Description</h3>
+                      <p>One Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, iste, architecto ullam tenetur quia nemo ratione tempora consectetur quos minus voluptates nisi hic alias libero explicabo reiciendis sint ut quo nulla ipsa aliquid neque molestias et qui sunt. Odit, molestiae. One Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, iste, architecto ullam tenetur quia nemo ratione tempora consectetur quos minus voluptates nisi hic alias libero explicabo reiciendis sint ut quo nulla ipsa aliquid neque molestias et qui sunt. Odit, molestiae.</p>
+                      <p>One Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, iste, architecto ullam tenetur quia nemo ratione tempora consectetur quos minus voluptates nisi hic alias libero explicabo reiciendis sint ut quo nulla ipsa aliquid neque molestias et qui sunt. Odit, molestiae.</p>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+{{!-- 
 {{#with product}}
     <h2>{{title}}</h2>
     <p>{{description}}</p>
@@ -13,4 +85,4 @@
     <form action="/products/{{product._id}}/delete" method="post">
         <button type="submit">Delete product</button>
     </form>
-{{/if}}
+{{/if}} --}}
