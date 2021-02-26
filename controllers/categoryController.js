@@ -10,7 +10,7 @@ router.get("/new", function(req,res){
 router.get("/:id/edit", function(req,res){
     Category.findById(req.params.id, function(err, category){
         if(err){
-            console.log(err);
+            res.redirect("/:id", {message : err});
         }else{
             res.render("products/category/edit.hbs", {category: category});
         }
@@ -29,7 +29,7 @@ router.post("/", function(req,res){
 
     Category.create(newCategory, function(err, category){
         if(err){
-            console.log(err);
+            res.redirect("/", {message : err});
         }else{
             res.redirect("/products");
         }
@@ -51,7 +51,7 @@ router.post("/:id", function(req,res){
 router.post("/:id/delete", function(req,res){
     Category.findById(req.params.id, function(err, category){
         if(err){
-            console.log(err);
+            res.redirect("/:id", {message : err});;
         }else{
             category.deletedBy = req.user.username;
             category.deletedAt = Date.now();

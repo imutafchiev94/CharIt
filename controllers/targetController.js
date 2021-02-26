@@ -12,7 +12,7 @@ router.get("/:id/edit", function(req,res){
 
     Target.findById(req.params.id, function(err, target){
         if(err){
-            console.log(err);
+            res.render("charities/charities.hbs", {message: err});
         }else{
             res.render("charities/target/editTarget.hbs", {target: target});
         }
@@ -23,7 +23,7 @@ router.get("/:id/edit", function(req,res){
 router.get("/:id", function(req,res){
     Target.findById(req.params.id, function(err, target){
         if(err){
-            console.log(err);
+            res.render("charities/charities.hbs", {message: err});
         }else{
             res.render("charities/target/charityDetails.hbs");
         }
@@ -46,7 +46,7 @@ router.post("/", function(req,res){
     
     Target.create(newTarget, function(err, target){
         if(err){
-            console.log(err);
+            res.render("charities/charities.hbs", {message: err});
         }else{
             res.redirect("/charities/" + target.charity);
         }
@@ -57,7 +57,7 @@ router.post("/:id", function(req,res){
 
     Target.findByIdAndUpdate(req.params.id, req.body.target, function(err,target){
         if(err){
-            console.log(err);
+            res.redirect("/charities/" + target.charity, {message : err});
         }else{
             target.updatedAt = Date.now();
             target.updatedBy = req.user.username;
@@ -70,7 +70,7 @@ router.post("/:id", function(req,res){
 router.post("/:id/delete", function(req,res){
     Target.findById(req.params.id, function(err, target){
         if(err){
-            console.log(err);
+            res.redirect("/charities/" + target.charity, {message : err});
         }else{
             target.deletedBy = req.user.username;
             target.deletedAt = Date.now();
