@@ -10,8 +10,10 @@ module.exports = function () {
                     res.clearCookie(process.env.COOKIE_SESSION_NAME);
                 } else {
                     req.user = decoded;
-                    req.locals.user = decoded;
-                    req.locals.isAuthenticated = true;
+                    res.locals.user = decoded;
+                    res.locals.isAuthenticated = true;
+
+                    console.log(req.user);
 
                     if(decoded.role != 'admin') {
                         res.locals.isAdmin = false;
@@ -19,7 +21,7 @@ module.exports = function () {
                         res.locals.isAdmin = true;
                     }
                 }
-            })
+            });
         }
 
         next();

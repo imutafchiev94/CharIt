@@ -68,7 +68,7 @@ async function register(data) {
 };
 
 async function login(username, password) {
-    let user = await User.findOne({username: username}).populate("role").lean();
+    let user = await User.findOne({username: username}).populate("role").populate('charities').populate('products').lean();
 
     if(!user)
     {
@@ -86,7 +86,7 @@ async function login(username, password) {
     }
 
     let token = jwt.sign(
-        {id: user._id, username: user.username, role: user.role.name},
+        {_id: user._id, username: user.username, role: user.role.name, charities: user.charities.map(a => a.authorId), products: user.products.map(a => a.authorId)},
         process.env.USER_SESSION_SECRET
     );
 

@@ -104,8 +104,9 @@ router.get(
 
 router.get(
   "/login/facebook/callback",
-  passport.authenticate("facebook", (req, res) => {
-    res.redirect('/');
+  passport.authenticate("facebook", {
+    successRedirect: "/",
+    failureRedirect: "/login",
   })
 );
 
