@@ -9,7 +9,7 @@ router.use('/donation', donationController);
 router.use('/target', targetController);
 
 router.get("/", function(req,res){
-    Charity.find({}, function(err, charities){
+    Charity.find({deletedAt : null}, function(err, charities){
         if(err){
             res.render("charities/charities.hbs", {message : err});
         }else{

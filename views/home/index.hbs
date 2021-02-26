@@ -11,3 +11,7 @@
 {{#if isAuthenticated}}
     <a href="/user/{{user._id}}">Profile</a>
 {{/if}}
+
+{{#if isAuthenticated}}
+    <a href="/auth/logout">Logout</a>
+{{/if}}

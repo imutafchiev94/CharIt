@@ -3,7 +3,13 @@
     <input type="text" name="product[title]" placeholder="title"></input>
     <input type="text" name="product[description]" placeholder="description"></input>
     <input type="text" name="product[price]" placeholder="price"></input>
-    <input type="text" name="product[category]" placeholder="category"></input>
     <input type="text" name="product[quantity]" placeholder="quantity"></input>
+    <label for="cars">Category:</label>
+    <select name="product[category]">
+        {{#each categories}}
+            <option value="{{this._id}}">{{this.title}}</option>
+        {{/each}}
+    </select>
+
     <button type="submit">Save</button>
 </form>

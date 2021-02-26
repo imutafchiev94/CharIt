@@ -20,10 +20,9 @@ router.get("/:id/edit", function(req,res){
 
 router.post("/", function(req,res){
     var title = req.body.title;
-    createdBy = req.user.username;
-    updatedBy = req.user.username;
+    createdBy = req.user.username;   
     createdAt = Date.now();
-    updatedAt = Date.now();    
+        
 
     var newCategory = {title: title, createdBy: createdBy, updatedBy : updatedBy, createdAt : createdAt, updatedAt : updatedAt}
 

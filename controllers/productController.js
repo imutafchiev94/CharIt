@@ -8,12 +8,12 @@ router.use('/order', orderController);
 router.use('/category', categoryController);
 
 router.get("/", function(req,res){
-    Product.find({}, function(err, products){
+    Product.find({deletedAt : null}, function(err, products){
         if(err){
             res.render("products/products.hbs", { message : err});
         }else{
 
-            Category.find({}, function(err, categories){
+            Category.find({deletedAt : null}, function(err, categories){
                 if(err){
                     res.render("products/products.hbs", {products : products});
                 }else{
@@ -26,18 +26,26 @@ router.get("/", function(req,res){
 });
 
 router.get("/new", function(req, res){
-    res.render("products/newProduct.hbs");
+
+    Category.find({deletedAt : null}, function(err, categories){
+        if(err){
+            res.render("products/newProduct.hbs", {message : err});
+        }else{
+            res.render("products/newProduct.hbs", {categories: categories});
+        }
+    }).lean();
+
 });
 
 router.post("/", function(req,res){
 
-    var title = req.body.title;
-    var description = req.body.description;
-    var price = req.body.price;
-    var quantity = req.body.quantity;
+    var title = req.body.product.title;
+    var description = req.body.product.description;
+    var price = req.body.product.price;
+    var quantity = req.body.product.quantity;
     //TODO:ADD MORE
 
-    var newProduct = {title: title, description: description, price: price, quantity: quantity};
+    var newProduct = {title: title, description: description, price: price, quantity: quantity, createdAt: Date.now(), createdBy: req.user._id};
 
     Product.create(newProduct, function(err, product){
         if(err){
@@ -62,9 +70,18 @@ router.get("/:id", function(req,res){
 router.get("/:id/edit", function(req,res){
     Product.findById(req.params.id, function(err, product){
         if(err){
-            console.log(err);
+            res.render("products/products.hbs", {message: err});
         }else{
-            res.render("products/editProduct.hbs", {product: product});
+
+            Category.find({}, function(err,categories){
+                if(err){
+                    res.render("products/editProduct.hbs", {product: product});
+                }else{
+                    res.render("products/editProduct.hbs", {product: product, categories: categories});
+                }
+            }).lean();
+
+            
         }
     }).lean();
 });

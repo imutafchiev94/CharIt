@@ -1,11 +1,15 @@
 <h2>{{message}}</h2>
-{{#with product}}
-    <form action="/products/{{_id}}" method="POST">
-        <input type="text" name="product[title]" value="{{title}}" placeholder="title"></input>
-        <input type="text" name="product[description]" value="{{description}}" placeholder="description"></input>
-        <input type="text" name="product[price]" value="{{price}}" placeholder="price"></input>
-        <input type="text" name="product[category]" value="{{category}}" placeholder="category"></input>
-        <input type="text" name="product[quantity]" value="{{quantity}}" placeholder="quantity"></input>
-        <button type="submit">Save</button>
-    </form>
-{{/with}}
+<form action="/products/{{_id}}" method="POST">
+    <input type="text" name="product[title]" value="{{product.title}}" placeholder="title"></input>
+    <input type="text" name="product[description]" value="{{product.description}}" placeholder="description"></input>
+    <input type="text" name="product[price]" value="{{product.price}}" placeholder="price"></input>
+    <input type="text" name="product[quantity]" value="{{product.quantity}}" placeholder="quantity"></input>
+    <label for="cars">Category:</label>
+    <select name="product[category]">
+        {{#each categories}}
+            <option value="{{this._id}}">{{this.title}}</option>
+        {{/each}}
+    </select>
+
+    <button type="submit">Save</button>
+</form>

@@ -212,9 +212,9 @@ router.get("/register", (req, res) => {
   })
   
   router.get('/logout', async (req, res) => {
-      res.clearCookie(process.env.USER_SESSION_SECRET);
+      await res.clearCookie(process.env.COOKIE_SESSION_NAME);
 
-      res.send("/");
+      res.redirect("/");
   })
 
   

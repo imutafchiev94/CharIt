@@ -1,6 +1,5 @@
 <h1>CATEGORIES</h1>
 <a href="/products/category/new">Add Category</a>
-
 {{#each categories}}
   <p>{{this.title}}</p>
   <a href="/products/category/{{this._id}}/edit">Edit Category</a>
@@ -11,6 +10,7 @@
 {{/each}}
 
 <h1>PRODUCTS</h1>
+<a href="/products/new">Add Product</a>
 {{#each products}}
   <h3>{{this.title}}</h3>
   <a href="/products/{{this._id}}">Product Details</a>
