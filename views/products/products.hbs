@@ -1,3 +1,9 @@
+{{#each categories}}
+  <p>{{this.title}}</p>
+  <a href="/categories/{{category._id}}">Edit Category</a>
+  <hr>
+{{/each}}
+
 {{#each products}}
   <p>{{this.title}}</p>
   <a href="/products/{{product._id}}">Product Details</a>
