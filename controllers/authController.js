@@ -161,7 +161,7 @@ router.get(
 );
 
 router.get("/login", (req, res) => {
-  res.render("auth/login");
+  res.render("user/login");
 });
 
 router.post("/login", async (req, res) => {

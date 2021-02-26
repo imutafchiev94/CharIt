@@ -11,6 +11,9 @@ const userController = require('./controllers/userController');
 router.get('/', (req, res) => {
     res.render('home/index', {title: 'Home page'});
 });
+router.get('/news', (req, res) => {
+    res.render('news/news');
+})
 router.use('/products', productController);
 router.use('/charities', charityController);
 router.use('/user', userController);
