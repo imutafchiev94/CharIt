@@ -40,6 +40,16 @@ router.post("/", function(req,res){
 
 });
 
+router.get("/:id", function(req,res){
+    Product.findById(req.params.id, function(err, product){
+        if(err){
+            console.log();
+        }else{
+            res.render("/products/productDetails.hbs", {product: product});
+        }
+    }).lean();
+});
+
 router.get("/:id/edit", function(req,res){
     Product.findById(req.params.id, function(err, product){
         if(err){
