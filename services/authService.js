@@ -67,15 +67,15 @@ async function register(data) {
     }
 };
 
-async function login(username, password) {
-    let user = await User.findOne({username: username}).populate("role").populate('charities').populate('products').lean();
+async function login(data) {
+    let user = await User.findOne({username: data.username}).populate("role").populate('charities').populate('products').lean();
 
     if(!user)
     {
         throw {message: "Wrong credentials"}
     };
 
-    let isMatch = await bcrypt.compare(password, user.password);
+    let isMatch = await bcrypt.compare(data.password, user.password);
 
     if(!isMatch) {
         throw {message: "Wrong credentials"}
