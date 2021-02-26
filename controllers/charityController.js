@@ -19,7 +19,18 @@ router.get("/:id/edit", function(req,res){
         }else{
             res.render("/charities/editCharity.hbs", {charity: charity});
         }
-    });
+    }).lean();
+});
+
+
+router.get("/:id", function(req,res){
+    Charity.findById(req.params.id, function(err, charity){
+        if(err){
+            console.log();
+        }else{
+            res.render("/charities/charityDetails.hbs", {charity: charity});
+        }
+    }).lean();
 });
 
 router.post("/", function(req,res){
