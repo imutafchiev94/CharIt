@@ -7,7 +7,7 @@ router.get("/new", function(req,res){
 });
 
 
-router.get("/edit/:id", function(req,res){
+router.get("/:id/edit", function(req,res){
 
     Target.findById(req.params.id, function(err, target){
         if(err){
@@ -57,7 +57,7 @@ router.post("/:id", function(req,res){
     });
 });
 
-router.post("/delete/:id", function(req,res){
+router.post("/:id/delete", function(req,res){
     Target.findById(req.params.id, function(err, target){
         if(err){
             console.log(err);

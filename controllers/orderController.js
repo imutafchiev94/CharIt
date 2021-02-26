@@ -51,7 +51,7 @@ router.post("/", async function (req, res) {
 });
 
 
-router.post("/delete/:id", function(req,res){
+router.post("/:id/delete", function(req,res){
   order.findById(req.params.id, function(err, order){
     if(err){
       console.log(err);

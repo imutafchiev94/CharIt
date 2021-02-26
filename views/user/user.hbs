@@ -7,12 +7,13 @@
 <p>{{firstName}} {{lastName}}</p>
 <p>{{age}}</p>
 
-<a href="/user/{{user._id}}"></a>
+<a href="/user/{{user._id}}">Edit profile</a>
 
 <p>Products</p>
 <ul>
 {{#each products}}
-  <li>{{this}}</li>
+  <li>{{this.title}}</li>
+  <a href="/products/{{product._id}}/edit">Edit product</a>
 {{/each}}
 </ul>
 
@@ -21,7 +22,8 @@
 <p>Charities</p>
 <ul>
 {{#each charities}}
-  <li>{{this}}</li>
+  <li>{{this.title}}</li>
+  <a href="/charities/{{charity._id}}/edit">Edit charity</a>
 {{/each}}
 </ul>
 
@@ -30,6 +32,7 @@
 <p>Orders</p>
 <ul>
 {{#each orders}}
-  <li>{{this}}</li>
+  <li>{{this.number}}</li>
+  <a href="/orders/{{order._id}}/edit">Edit order</a>
 {{/each}}
 </ul>

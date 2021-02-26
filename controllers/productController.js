@@ -13,7 +13,11 @@ router.get("/", function(req,res){
         }else{
             res.render("products/products.hbs", {products : products});
         }
-    });
+    }).lean();
+});
+
+router.get("/new", function(req, res){
+    res.render("products/newProduct.hbs");
 });
 
 router.post("/", function(req,res){
@@ -24,7 +28,7 @@ router.post("/", function(req,res){
     var quantity = req.body.quantity;
     //TODO:ADD MORE
 
-    var newProdcut = {title: title, description: description, price: price, quantity: quantity};
+    var newProduct = {title: title, description: description, price: price, quantity: quantity};
 
     Product.create(newProduct, function(err, product){
         if(err){
@@ -36,14 +40,14 @@ router.post("/", function(req,res){
 
 });
 
-router.get("/edit/:id", function(req,res){
+router.get("/:id/edit", function(req,res){
     Product.findById(req.params.id, function(err, product){
         if(err){
             console.log(err);
         }else{
             res.render("products/editProduct.hbs", {product: product});
         }
-    });
+    }).lean();
 });
 
 
@@ -60,7 +64,7 @@ router.post("/:id", function(req,res){
     });
 });
 
-router.post("/delete/:id", function(req,res){
+router.post("/:id/delete", function(req,res){
     Product.findById(req.params.id, function(err,product){
         if(err){
             console.log(err);

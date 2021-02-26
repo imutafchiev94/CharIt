@@ -1,3 +1,7 @@
 <h1>Hello motherfuckers!</h1>
 <a href="/auth/login">Log In</a>
 <a href="/auth/register">Sign Up</a>
+
+{{#if isAuth}}
+<a href="/user/{{user.id}}">Profile</a>
+{{/if}}

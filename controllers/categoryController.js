@@ -1,11 +1,12 @@
 const {Router} = require('express');
 const router = Router();
 
+
 router.get("/new", function(req,res){
     res.render("products/category/newCategory.hbs");
 });
 
-router.get("edit/:id", function(req,res){
+router.get("/:id/edit", function(req,res){
     Category.findById(req.params.id, function(err, category){
         if(err){
             console.log(err);
@@ -46,7 +47,7 @@ router.post("/:id", function(req,res){
     });
 });
 
-router.post("/delete/:id", function(req,res){
+router.post("/:id/delete", function(req,res){
     Category.findById(req.params.id, function(err, category){
         if(err){
             console.log(err);
