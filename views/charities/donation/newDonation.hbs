@@ -1,4 +1,5 @@
-<form action="/charities/{{charity._id}}">
-<h1>Donation info</h1>
+<form action="/charities/{{charity._id}}/donation" method="POST">
+<input type="text" name="sum" placeholder="sum">
+
 <button type="submit">Donate</button>
 </form>
