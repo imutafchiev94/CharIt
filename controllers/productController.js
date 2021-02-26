@@ -47,7 +47,7 @@ router.get("/:id/edit", function(req,res){
         }else{
             res.render("products/editProduct.hbs", {product: product});
         }
-    });
+    }).lean();
 });
 
 
