@@ -62,7 +62,7 @@ router.get("/:id/edit", function(req,res){
 
 
 router.post("/:id", function(req,res){
-    Product.findByIdAndUpdate(req.params.id, erq.body.product, function(err, product){
+    Product.findByIdAndUpdate(req.params.id, req.body.product, function(err, product){
         if(err){
             console.log(err);
         }else{
