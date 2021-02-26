@@ -6,3 +6,7 @@
 {{/with}}
 
 <a href="/products/{{product._id}}/edit">Edit Product</a>
+
+<form action="/products/{{product._id}}/delete" method="post">
+<button type="submit">Delete product</button>
+</form>
