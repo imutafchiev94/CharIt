@@ -24,7 +24,7 @@ router.post("/", function(req,res){
     createdAt = Date.now();
         
 
-    var newCategory = {title: title, createdBy: createdBy, updatedBy : updatedBy, createdAt : createdAt, updatedAt : updatedAt}
+    var newCategory = {title: title, author: author, createdBy: createdBy, updatedBy : updatedBy, createdAt : createdAt, updatedAt : updatedAt}
 
     Category.create(newCategory, function(err, category){
         if(err){

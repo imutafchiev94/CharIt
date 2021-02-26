@@ -45,7 +45,7 @@ router.post("/", function(req,res){
     var quantity = req.body.product.quantity;
     //TODO:ADD MORE
 
-    var newProduct = {title: title, description: description, price: price, quantity: quantity, createdAt: Date.now(), createdBy: req.user._id};
+    var newProduct = {title: title, autohr: req.user, category: "" , description: description, price: price, quantity: quantity, createdAt: Date.now(), createdBy: req.user._id};
 
     Product.create(newProduct, function(err, product){
         if(err){
