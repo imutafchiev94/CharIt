@@ -94,10 +94,13 @@ async function login(username, password) {
 }
 
 async function emailVerification(token) {
+
+    console.log(token);
+
     let userId;
     await jwt.verify(
         token,
-        process.env.USER_SESSION_SECRET,
+        process.env.MAIL_VALIDATION_SECRET,
         function(err, decoded) {
             if(err) {
                 throw {err};

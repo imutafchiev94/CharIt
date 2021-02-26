@@ -162,10 +162,11 @@ router.get("/register", (req, res) => {
 
   router.get('/emailverification/:token', async (req, res) => {
       try {
-          await authService.validateEmail(req.params.token);
-          res.render('verificationEmail');
+          await authService.emailVerification(req.params.token);
+          res.render('auth/verificationEmail');
       } catch(message) {
-          res.redirect('auth/login', {message});
+        console.log(message);
+          res.render('auth/login', {message});
       }
   })
 
