@@ -4,6 +4,8 @@ var Product = require("../models/product.js");
 var Category = require("../models/category.js");
 var orderController = require('./orderController');
 var categoryController = require('./categoryController');
+const categoryService = require('../services/categoryService');
+const userService = require('../services/userService');
 router.use('/order', orderController);
 router.use('/category', categoryController);
 
@@ -37,7 +39,7 @@ router.get("/new", function(req, res){
 
 });
 
-router.post("/", function(req,res){
+router.post("/", async function(req,res){
 
     var title = req.body.product.title;
     var description = req.body.product.description;
@@ -45,7 +47,10 @@ router.post("/", function(req,res){
     var quantity = req.body.product.quantity;
     //TODO:ADD MORE
 
-    var newProduct = {title: title, autohr: req.user, category: "" , description: description, price: price, quantity: quantity, createdAt: Date.now(), createdBy: req.user._id};
+    try {
+        var user = await userService.getUserById(req.user._id);
+        var category = await categoryService.getCategoryById(req.body.product.category)
+        var newProduct = {title: title, author: user, category: category , description: description, price: price, quantity: quantity, createdAt: Date.now(), createdBy: req.user._id};
 
     Product.create(newProduct, function(err, product){
         if(err){
@@ -54,6 +59,11 @@ router.post("/", function(req,res){
             res.redirect("/products");
         }
     });
+
+    }catch (message) {
+        console.log(message);
+    }
+
 
 });
 
