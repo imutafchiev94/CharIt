@@ -16,6 +16,10 @@ router.get("/", function(req,res){
     });
 });
 
+router.get("/new", function(req, res){
+    res.render("products/newProduct.hbs");
+});
+
 router.post("/", function(req,res){
 
     var title = req.body.title;
@@ -36,7 +40,7 @@ router.post("/", function(req,res){
 
 });
 
-router.get("/edit/:id", function(req,res){
+router.get("/:id/edit", function(req,res){
     Product.findById(req.params.id, function(err, product){
         if(err){
             console.log(err);
@@ -60,7 +64,7 @@ router.post("/:id", function(req,res){
     });
 });
 
-router.post("/delete/:id", function(req,res){
+router.post("/:id/delete", function(req,res){
     Product.findById(req.params.id, function(err,product){
         if(err){
             console.log(err);

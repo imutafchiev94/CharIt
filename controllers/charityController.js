@@ -12,7 +12,7 @@ router.get("/", function(req,res){
     res.render("/charities/charities.hbs");
 });
 
-router.get("/edit/:id", function(req,res){
+router.get("/:id/edit", function(req,res){
     Charity.findById(req.params.id, function(err,charity){
         if(err){
             console.log(err);
@@ -60,6 +60,19 @@ router.post("/:id", function(req,res){
             charity.updatedBy = req.user.username;
             charity.save();
             res.redirect("/charities/" + charity._id);
+        }
+    });
+});
+
+router.post("/:id/delete", function(req,res){
+    Charity.findById(req.params.id, function(err, charity){
+        if(err){
+            console.log(err);
+        }else{
+            charity.deletedAt = Date.now();
+            charity.deletedBy = req.user.username;
+            charity.save();
+            res.redirect("/charities");
         }
     });
 });
