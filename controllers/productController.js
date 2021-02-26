@@ -45,7 +45,7 @@ router.get("/:id", function(req,res){
         if(err){
             console.log();
         }else{
-            res.render("/products/productDetails.hbs", {product: product});
+            res.render("products/productDetails.hbs", {product: product});
         }
     }).lean();
 });
