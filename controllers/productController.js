@@ -4,6 +4,8 @@ var Product = require("../models/product.js");
 var Category = require("../models/category.js");
 var orderController = require('./orderController');
 var categoryController = require('./categoryController');
+const userService = require('../services/userService')
+const categoryService = require('../services/categoryService');
 router.use('/order', orderController);
 router.use('/category', categoryController);
 
@@ -27,6 +29,8 @@ router.get("/", function(req,res){
 
 router.get("/new", function(req, res){
 
+    
+
     Category.find({deletedAt : null}, function(err, categories){
         if(err){
             res.render("products/newProduct.hbs", {message : err});
@@ -37,7 +41,7 @@ router.get("/new", function(req, res){
 
 });
 
-router.post("/", function(req,res){
+router.post("/", async function(req,res){
 
     var title = req.body.product.title;
     var description = req.body.product.description;
@@ -45,7 +49,12 @@ router.post("/", function(req,res){
     var quantity = req.body.product.quantity;
     //TODO:ADD MORE
 
-    var newProduct = {title: title, autohr: req.user, category: "" , description: description, price: price, quantity: quantity, createdAt: Date.now(), createdBy: req.user._id};
+    
+
+    try {
+        var user = await userService.getUserById(req.user._id);
+        var category = await categoryService.getCategoryById(req.body.product.category)
+        var newProduct = {title: title, author: user, category: category , description: description, price: price, quantity: quantity, createdAt: Date.now(), createdBy: req.user._id};
 
     Product.create(newProduct, function(err, product){
         if(err){
@@ -55,14 +64,22 @@ router.post("/", function(req,res){
         }
     });
 
+    }catch (message) {
+        console.log(message);
+    }
+
+    
 });
 
 router.get("/:id", function(req,res){
+
+    var categories = categoryService.getAllCategories();
+
     Product.findById(req.params.id, function(err, product){
         if(err){
             console.log();
         }else{
-            res.render("products/productDetails.hbs", {product: product});
+            res.render("products/productDetails.hbs", {product: product, categories});
         }
     }).lean();
 });
