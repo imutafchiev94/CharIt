@@ -14,7 +14,7 @@ function setupExpress(app) {
 
     app.set('view engine', 'hbs');
 
-    app.use(express.static('public'));
+    // app.use('/public', express.static('../public'));
     app.use(express.urlencoded({extended: true}));
     app.use(passport.initialize());
     app.use(passport.session());
