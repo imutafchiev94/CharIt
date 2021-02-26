@@ -1,6 +1,12 @@
-<h1>Hello motherfuckers!</h1>
+{{#if isAuthenticated}}
+<img src="{{user.avatar}}" alt="avatar">
+<h1 style="display: inline;">Hello {{user.username}}!</h1>
+{{/if}}
+
+{{#unless isAuthenticated}}
 <a href="/auth/login">Log In</a>
 <a href="/auth/register">Sign Up</a>
+{{/unless}}
 
 {{#if isAuthenticated}}
     <a href="/user/{{user._id}}">Profile</a>

@@ -1,5 +1,5 @@
 <h1>{{message}}</h1>
-<form action="/auth/register" method="POST">
+<form action="/auth/register" method="POST" enctype="multipart/form-data">
   <input type="text" name="username" placeholder="username" />
   <input type="password" name="password" placeholder="password" />
   <input type="password" name="confirmPassword" placeholder="confirm Password" />
@@ -8,7 +8,16 @@
   <input type="text" name="lastName" placeholder="last name" />
   <input type="text" name="age" placeholder="age" />
   <input type="text" name="city" placeholder="city" />
-  <input type="text" name="avatar" placeholder="avatar" />
-
+  <input type="file" id="actual-btn" name="avatar" hidden/>
+      <label for="actual-btn" class="upload-button">Избери файл</label>
+      <span id="file-chosen">Няма избрани файлове</span>
   <button type="submit">Sign Up</button>
 </form>
+
+<script>
+  const actualBtn = document.getElementById('actual-btn');
+const fileChosen = document.getElementById('file-chosen');
+  actualBtn.addEventListener('change', function(){
+  fileChosen.textContent = this.files[0].name
+})
+</script>
