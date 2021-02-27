@@ -12,12 +12,14 @@ theme. But don't modify main-style.css file.
 /* Buttons */
 .btn-orange {
     background-color: #F88540;
+    border-color: #F88540;
     color: #FFF;
 }
 
 .btn-orange:hover{
     color: #FFF;
     background-color: #e0773a;
+    border-color:  #e0773a;
 }
 
 .btn-fbk {
