@@ -1,8 +1,9 @@
 <section>
-      <div class="container">
+      <div class="container" style="margin-left: 24%;">
         <div class="section-content">
           <div class="row">
             <div class="product">
+              <h2 class="product-title lbl-blue ml-10">{{product.title}}</h2>
               <div class="col-md-5">
                 <div class="product-image">
                   <div class="zoom-gallery">
@@ -10,43 +11,65 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-7">
-                <div class="product-summary">
-                  <h2 class="product-title lbl-blue">{{product.title}}</h2>
-  
-                  <div class="price"><span class="amount" style="color: #F88540;">{{product.price}} лв.</div>
-                  <div class="short-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos enim minus ratione sed neque, explicabo placeat libero obcaecati repellendus modi! Consequatur ad ullam, architecto voluptatum eaque natus temporibus unde dignissimos!</p>
-                  </div>
-                  <div class="tags"><strong>Charity:</strong>{{#}}</div>
-                  <div class="category"><strong>Category:</strong> <a href="#">{{product.category.title}}</a></div>
-
-                  <div class="cart-form-wrapper mt-30">
-                    <form action="/products/order/new" enctype="multipart/form-data" method="POST" class="cart">
-                      <input type="hidden" value="{{product._id}}" name="productId">
-                      <table class="table variations no-border">
-                        <tbody>
-                          <tr>
-                            <td class="name">Amount</td>
-                            <td class="value">
-                              <div class="quantity buttons_added">
-                                <input type="button" class="minus" value="-">
-                                <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                                <input type="button" class="plus" value="+">
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <a href="/products/order/{{product._id}}/new" class="single_add_to_cart_button btn btn-orange">Buy</a>
-                      {{!-- {{#if isProductAuthor}} --}}
-                      <a href="/products/{{product._id}}/edit" class="single_add_to_cart_button btn btn-orange pull-right">Edit</a>
-                      {{!-- {{/if}} --}}
-                    </form>
+              <div class="col-md-5">
+                <div class="widget">
+                  <h5 class="widget-title line-bottom">Charities you can support</h5>
+                  <div class="owl-carousel-1col" data-dots="true">
+                    <div class="item">
+                      <img src="https://placehold.it/365x230" alt="">
+                      <h4 class="title">This is a Demo Title</h4>
+                    </div>
+                    <div class="item">
+                      <img src="https://placehold.it/365x230" alt="">
+                      <h4 class="title">This is a Demo Title</h4>
+                    </div>
+                    <div class="item">
+                      <img src="https://placehold.it/365x230" alt="">
+                      <h4 class="title">This is a Demo Title</h4>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-12">
+
+            <div class="product-summary">
+              <div class="row">
+                <div class="col-lg-5">              
+                    <div class="price"><span class="amount" style="color: #F88540; font-size: 24px;">{{product.price}} лв.</div>        
+                    <div class="category"><strong style="font-size: 16px;">Category:</strong> <a href="#">{{product.category.title}}</a></div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="cart-form-wrapper mt-15">
+                      <input type="hidden" value="{{product._id}}" name="productId">
+
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputAmount"></label>
+                        <div class="input-group">
+                          <div class="input-group-addon">Amount:</div>
+                              <div class="quantity buttons_added">
+
+                                     <input type="button" class="minus" value="-">
+                                <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1" id="exampleInputAmount">
+                                <input type="button" class="plus" value="+">
+                                </div>
+                        </div>
+                      </div>
+
+                  </div>
+                </div>
+                <div class="col-lg-1">
+                    <div {{#unless isProductAuthor}} class="mt-15" {{/unless}}>
+                      <a href="/products/order/{{product._id}}/new" class="single_add_to_cart_button btn btn-orange pull-right">Buy</a> 
+                    </div>
+                    <div class="clearfix"></div>
+                    <div>
+                      {{#if isProductAuthor}}
+                      <a href="/products/{{product._id}}/edit" class="single_add_to_cart_button btn btn-orange pull-right" style="margin-top: 5px;">Edit</a>
+                      {{/if}}
+                    </div>
+                </div>
+            </div>
+              </div>
+              <div class="col-md-10">
                 <div class="horizontal-tab product-tab">
                   <ul class="nav nav-tabs">
                     {{!-- <li class="active"><a style="background-color: #F88540;">Description</a></li> --}}
