@@ -3,19 +3,20 @@ const order = require("../models/order");
 const Category = require("../models/category");
 const charityService = require("../services/charityService");
 const targetService = require("../services/targetService");
+const productService = require('../services/productService');
 
 
 const router = Router();
 
-router.get("/new/", async function (req, res) {
+router.get("/:id/new/", async function (req, res) {
   try {
     var charities = await charityService.getAll();
-
+    var product = await productService.getProductById(req.params.id);
     Category.find({deletedAt : null}, function(err, categories){
       if(err){
         res.render("products/order/newOrder.hbs", { charities, message : err });
       }else{
-        res.render("productes/order/newOrder.hbs", { charities, categories: categories } );
+        res.render("productes/order/newOrder.hbs", { charities, categories: categories, product } );
       }
     });
    

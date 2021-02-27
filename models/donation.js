@@ -1,7 +1,10 @@
 var mongoose = require("mongoose");
 
 var donationSchema = new mongoosse.Schema({
-    sum: Number,
+    sum: {
+        type: Number,
+        required: true,
+    },
     target:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Target"
@@ -16,7 +19,7 @@ var donationSchema = new mongoosse.Schema({
     deletedBy: String,
     createdAt: Date,
     updatedAt: Date,
-    deletedAt: Date
+    deletedAt: Date,
 });
 
 

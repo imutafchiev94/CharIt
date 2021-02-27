@@ -1,21 +1,27 @@
 var mongoose = require("mongoose");
 
 var orderSchema = new mongoose.Schema({
-    sum: Number,
+    sum: {
+        type: Number,
+        required: true
+    },
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    product:{
+    product:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Product"
-    },charity:{
+    }],
+    charity:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Charity"
-    },target: {
+    }],
+    target: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Target"
-    },createdBy: String,
+    }],
+    createdBy: String,
     updatedBy: String,
     deletedBy: String,
     createdAt: Date,
