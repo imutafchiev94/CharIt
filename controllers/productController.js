@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router({ mergeParams: true });
 var Product = require("../models/product.js");
 var Category = require("../models/category.js");
+const Charity = require('../models/charity');
 var orderController = require("./orderController");
 var categoryController = require("./categoryController");
 const categoryService = require("../services/categoryService");
@@ -26,10 +27,17 @@ router.get("/", function (req, res) {
         if (err) {
           res.render("products/products.hbs", { products: products });
         } else {
-          res.render("products/products.hbs", {
-            products: products,
-            categories: categories,
-          });
+          Charity.find({deleteAt: null}, function (err, charities) {
+            if(err) {
+              res.render("products/products.hbs", { products: products });
+            } else {
+              res.render("products/products.hbs", {
+                products: products,
+                categories: categories,
+                charities,
+              });
+            }
+          }).lean()
         }
       }).lean();
     }
