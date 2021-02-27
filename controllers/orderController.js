@@ -73,8 +73,10 @@ router.post("/", async function (req, res) {
 
     order.create(newOrder, function (err, target) {
       if (err) {
+        console.log(err);
         res.redirect("/products", {message : err});
       } else {
+        console.log(targer);
         res.redirect("/products");
       }
     });
