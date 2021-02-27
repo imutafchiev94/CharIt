@@ -122,7 +122,7 @@ router.get("/:id", function (req, res) {
             categories: categories,
           });
         }
-      });
+      }).lean();
     }
   }).populate("category").populate("charity").lean();
 });
