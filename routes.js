@@ -5,6 +5,7 @@ const authController = require('./controllers/authController');
 const charityController = require('./controllers/charityController');
 const productController = require('./controllers/productController');
 const userController = require('./controllers/userController');
+const newsController = require('./controllers/newsController');
 const categoryService = require('./services/categoryService');
 
 
@@ -17,9 +18,7 @@ router.get('/', async (req, res) => {
     }
     
 });
-router.get('/news', (req, res) => {
-    res.render('news/news');
-})
+router.use('/news', newsController);
 router.use('/auth', authController);
 router.use('/products', productController);
 router.use('/charities', charityController);
