@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router({ mergeParams: true });
 var Product = require("../models/product.js");
 var Category = require("../models/category.js");
+const Charity = require('../models/charity');
 var orderController = require("./orderController");
 var categoryController = require("./categoryController");
 const categoryService = require("../services/categoryService");
@@ -26,10 +27,17 @@ router.get("/", function (req, res) {
         if (err) {
           res.render("products/products.hbs", { products: products });
         } else {
-          res.render("products/products.hbs", {
-            products: products,
-            categories: categories,
-          });
+          Charity.find({deleteAt: null}, function (err, charities) {
+            if(err) {
+              res.render("products/products.hbs", { products: products });
+            } else {
+              res.render("products/products.hbs", {
+                products: products,
+                categories: categories,
+                charities,
+              });
+            }
+          }).lean()
         }
       }).lean();
     }
@@ -67,7 +75,8 @@ router.post("/", multipartMiddleware, async function (req, res) {
     );
     var image = req.files.avatar.path;
      
-    var charity = await charityService.getOneById(req.body.product.charity);
+    var charities = await charityService.getManyByArrayOfId(req.body.product.charity);
+
     var newProduct = {
       title: title,
       author: user,
@@ -77,13 +86,12 @@ router.post("/", multipartMiddleware, async function (req, res) {
       quantity: quantity,
       createdAt: Date.now(),
       createdBy: req.user._id,
-      charity: charity,
+      charities: charities,
       imageUrl: "",
     };
 
-    await cloudinary.uploader.upload(image, {resource_type: "image"}).
+    await cloudinary.uploader.upload(image, {resource_type: "image", width:320, height:360}).
     then(function(file) {
-      
       newProduct.imageUrl = file.url}).
      catch(function(err) {console.log(err)});
 

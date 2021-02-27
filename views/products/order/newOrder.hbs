@@ -2,18 +2,18 @@
   <div class="container">
     <div class="section-content">
       <div class="row mt-30">
-        <form id="checkout-form" action="#">
+        <form id="checkout-form" action="/products/order/{{product._id}}">
           <div class="col-md-6">
             <div class="billing-details">
               <h3 class="mb-30 lbl-orange">Billing Details</h3>
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="checkout_first_name">First Name</label>
-                  <input id="checkout_first_name" type="email" class="form-control" placeholder="First Name">
+                  <input id="checkout_first_name" type="text" class="form-control" value="Nikolay" placeholder="First Name">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="checkout_last_name">Last Name</label>
-                  <input id="checkout_last_name" type="email" class="form-control" placeholder="Last Name">
+                  <input id="checkout_last_name" type="text" class="form-control" value="Spasov" placeholder="Last Name">
                 </div>
                 <div class="col-md-12">
                   {{!-- <div class="form-group">
@@ -22,11 +22,11 @@
                   </div> --}}
                   <div class="form-group">
                     <label for="checkuot_email">Email Address</label>
-                    <input id="checkuot_email" type="email" class="form-control" placeholder="Email Address">
+                    <input id="checkuot_email" type="email" class="form-control" value="oknas2014@gmail.com" placeholder="Email Address">
                   </div>
                   <div class="form-group">
                     <label for="checkuot_address">Address</label>
-                    <input id="checkuot_address" type="email" class="form-control" placeholder="Street address">
+                    <input id="checkuot_address" type="text" class="form-control" value="st. Konstantin Gerov 16" placeholder="Street address">
                   </div>
                   {{!-- <div class="form-group">
                     <input type="email" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
@@ -41,7 +41,7 @@
                 <div class="row">
 			            <div class="form-group col-md-6">
                     <label for="checkuot_city">City</label>
-                    <input id="checkuot_city" type="email" class="form-control" placeholder="City">
+                    <input id="checkuot_city" type="text" class="form-control" value="Plovdiv" placeholder="City">
                   </div>
                   <div class="form-group col-md-6">
                     <label>State/Province</label>
@@ -50,11 +50,12 @@
                       <option>Australia</option>
                       <option>UK</option>
                       <option>USA</option>
+                      <option selected>Bulgaria</option>
                     </select>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="checkuot-form-zip2">Zip/Postal Code</label>
-                    <input id="checkuot-form-zip2" type="email" class="form-control" placeholder="Zip/Postal Code">
+                    <input id="checkuot-form-zip2" type="text" class="form-control" value="4000" placeholder="Zip/Postal Code">
                   </div>
                   <div class="form-group col-md-6">
                     <label>Country</label>
@@ -63,6 +64,7 @@
                       <option>Australia</option>
                       <option>UK</option>
                       <option>USA</option>
+                      <option selected>Bulgaria</option>
                     </select>
                   </div>
                 </div>
@@ -90,7 +92,7 @@
                   <td class="product-thumbnail"><a href="#"><img alt="member" src="{{product.imageUrl}}"></a></td>
                   <td><a href="#"></a>{{product.title}}</td>
                   <td><span>{{product.quantity}}</span></td>
-                  <td>{{product.price}} лв.</td>
+                  <td>{{product.price}} lv.</td>
                 </tr>
                 {{!-- {{/each}} --}}
                 {{!-- <tr>
@@ -110,7 +112,7 @@
                   <td>&nbsp;</td>
                   <td>&nbsp;</td>
                   <td>
-                    {{sum product.price product.quantity}} лв.
+                    {{sum product.price product.quantity}} lv.
                   </td>
                 </tr>
               </tbody>
@@ -134,7 +136,7 @@
             </div>
           </div>
           <div class="col-md-12">
-            <div class="text-right"><a class="btn btn-orange">Place Order</a> </div>
+            <div class="text-right"><a href="/products/order/{{product._id}}/details" class="btn btn-orange">Place Order</a> </div>
           </div>
         </form>
       </div>
