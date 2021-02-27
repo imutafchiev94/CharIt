@@ -1,132 +1,3 @@
-<section>
-      <div class="container">
-        <div class="section-content">
-          <div class="row mt-30">
-            <form id="checkout-form" action="#">
-              <div class="col-md-6">
-                <div class="billing-details">
-                  <h3 class="mb-30 lbl-orange">Billing Details</h3>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="checkuot-form-cname">Title</label>
-                        <input id="checkuot-form-cname" type="email" class="form-control" placeholder="Product Name">
-                      </div>
-                      <div class="form-group">
-                        <label for="checkuot-form-email">Category</label>
-                        <input id="checkuot-form-email" type="email" class="form-control" placeholder="Select Category">
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="checkuot-form-fname">Quantity</label>
-                      <input id="checkuot-form-fname" type="email" class="form-control" placeholder="First Name">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="checkuot-form-lname">Price</label>
-                      <input id="checkuot-form-lname" type="email" class="form-control" placeholder="Last Name">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-	
-                <div class="shipping-details" style="padding-top: 84px">
-
-                  <div>
-                    <div class="row">
-                                          <div class="form-group">
-                    <label>Order Notes</label>
-                    <textarea class="form-control" placeholder="Notes about your order, e.g. special notes for delivery." rows="6"></textarea>
-                  </div>
-					<div class="form-group col-md-6">
-                      <label for="checkuot-form-city">City</label>
-                      <input id="checkuot-form-city" type="email" class="form-control" placeholder="City">
-                    </div>
-                      <div class="form-group col-md-6">
-                        <label>State/Province</label>
-                        <select class="form-control">
-                          <option>Select Country</option>
-                          <option>Australia</option>
-                          <option>UK</option>
-                          <option>USA</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <h3 class="lbl-orange">Your order</h3>
-                <table class="table table-striped table-bordered tbl-shopping-cart">
-                  <thead>
-                    <tr>
-                      <th>Photo</th>
-                      <th>Product Name</th>
-                      <th>Quantity</th>
-                      <th>Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {{!-- {{#each products}} --}}
-                    <tr>
-                      <td class="product-thumbnail"><a href="#"><img alt="member" src="{{product.imageUrl}}"></a></td>
-                      <td><a href="#"></a>{{product.title}}</td>
-                      <td><span>{{product.quantity}}</span></td>
-                      <td><span class="amount">{{product.price}} лв.</span></td>
-                    </tr>
-                    {{!-- {{/each}} --}}
-                    <tr>
-                      <td>Cart Subtotal</td>
-                      <td>&nbsp;</td>
-                      <td>&nbsp;</td>
-                      <td>$180.00</td>
-                    </tr>
-                    <tr>
-                      <td>Shipping and Handling</td>
-                      <td>&nbsp;</td>
-                      <td>&nbsp;</td>
-                      <td>Free Shipping</td>
-                    </tr>
-                    <tr>
-                      <td>Order Total</td>
-                      <td>&nbsp;</td>
-                      <td>&nbsp;</td>
-                      <td>$250.00</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="col-md-12">
-                <h3 class="lbl-orange">Payment Information</h3>
-                <div class="payment-method">
-
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" value="option2" checked>
-                      Easy Pay </label>
-                    <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" value="option3" checked>
-                      PayPal Payment </label>
-                    <p>Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="text-right"><a class="btn btn-orange">Place Order</a> </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-
-
 <section id="home" class="divider parallax fullscreen layer-overlay overlay-white-9" data-bg-img="http://placehold.it/1920x1280">
       <div class="display-table">
         <div class="display-table-cell">
@@ -137,34 +8,55 @@
                 <form name="login-form" action="/auth/login" method="POST" class="form-transparent clearfix">
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="form_username_email">Title</label>
-                            <input id="form_username_email" name="product[title]" class="form-control" type="text">
+                            <label for="form_title">Title</label>
+                            <input id="form_title" name="product[title]" class="form-control" type="text">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="form_username_email">Description</label>
-                            <te id="form_username_email" name="product[description]" class="form-control" type="text">
+                            <label for="form_description">Description</label>
+                            <te id="form_description" name="product[description]" class="form-control" type="text">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="form_username_email">Price</label>
-                            <input id="form_username_email" name="product[price]" class="form-control" type="text">
+                            <label for="form_price">Price</label>
+                            <input id="form_price" name="product[price]" class="form-control" type="text">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="form_username_email">Quantity</label>
-                            <input id="form_username_email" name="product[quantity]" class="form-control" type="text">
+                            <label for="form_quantity">Quantity</label>
+                            <input id="form_quantity" name="product[quantity]" class="form-control" type="number" min="1" max="99">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="form_username_email">Category</label>
-                            <input id="form_username_email" name="product[category]" class="form-control" type="text">
+                            <label for="form_category">Category</label>
+                            <select id="form_category" class="form-control" name="product[category]">
+                                {{#each categories}}
+                                    <option value="{{this._id}}" >{{this.title}}</option>
+                                {{/each}}
+                            </select> 
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="form_charity">Charity</label>
+                            <select id="form_charity" class="form-control" name="product[charity]">
+                                {{#each charities}}
+                                    <option value="{{this.target._id}}">{{this.title}}</option>
+                                {{/each}}
+                            </select> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="form_avatar">Picture</label>
+                            <input name="product[avatar]" type="file" id="form_avatar">
+                        </div>
+                    </div>
+            
                     <div class="clear text-center">
                     <button type="submit" class="btn btn-orange btn-lg btn-block no-border">Create</button>
                     </div>
@@ -175,23 +67,3 @@
         </div>
       </div>
     </section>
-
-
-
-
-
-<h2>{{message}}</h2>
-<form action="/products" method="POST">
-    <input type="text" name="product[title]" placeholder="title"></input>
-    <input type="text" name="product[description]" placeholder="description"></input>
-    <input type="text" name="product[price]" placeholder="price"></input>
-    <input type="text" name="product[quantity]" placeholder="quantity"></input>
-    <label for="cars">Category:</label>
-    <select name="product[category]">
-        {{#each categories}}
-            <option value="{{this._id}}">{{this.title}}</option>
-        {{/each}}
-    </select>
-
-    <button type="submit">Save</button>
-</form>

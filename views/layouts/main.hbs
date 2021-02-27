@@ -114,14 +114,15 @@
             <a class="menuzord-brand pull-left flip" href="javascript:void(0)"><img src="images/logo-wide.png" alt=""></a>
             <ul class="menuzord-menu">
               {{#if isAdmin}}
-              <li><a href="/products">Categories</a>
-                <ul class="dropdown">
-                  {{#each categories}}
-                    <li><a href="/products/category/{{this._id}}/edit">{{this.title}}</a></li>      
-                  {{/each}}        
-                  <li><a href="products/category/new">Add Category</a></li>                                    
-                </ul>
-              </li>
+                <li><a href="/products">Categories</a>
+                  <ul class="dropdown">
+                    <li><a href="products/category/new">Add Category</a></li>     
+                          <div class="separator separator-medium-line"> </div>
+                        {{#each categories}}
+                          <li><a href="/products/category/{{this._id}}/edit">{{this.title}}</a></li>      
+                        {{/each}}                 
+                  </ul>
+                </li>
               {{/if}}
               <li class="active"><a href="/">Home</a> 
 			  <!-- home, market|cats......, charities, news, contacts             login -->
