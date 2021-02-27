@@ -8,20 +8,20 @@ const productService = require('../services/productService');
 
 const router = Router();
 
-router.get("/new/", async function (req, res) {
+router.get("/:productId/new/", async function (req, res) {
   try {
     var charities = await charityService.getAll();
-    var product = await productService.getProductById(req.params.id);
+    var product = await productService.getProductById(req.params.productId);
     Category.find({deletedAt : null}, function(err, categories){
       if(err){
         res.render("products/order/newOrder.hbs", { charities, message : err });
       }else{
-        res.render("products/order/newOrder.hbs", { charities, categories: categories, product : product } );
+        res.render("products/order/newOrder.hbs", { charities, categories: categories, product } );
       }
     });
    
   } catch (message) {
-    console.log(message.message);
+
     Category.find({ deletedAt : null }, function(err, categories){
       if(!err){
         res.render("products/order/newOrder.hbs", { charities, message, categories });
