@@ -14,6 +14,7 @@ theme. But don't modify main-style.css file.
     background-color: #F88540;
     color: #FFF;
 }
+
 .btn-orange:hover{
     color: #FFF;
     background-color: #e0773a;
@@ -23,6 +24,7 @@ theme. But don't modify main-style.css file.
     background-color: #3B5998;
     color: #FFF;
 }
+
 .btn-fbk:hover{
     color: #FFF;
     background-color: #345089;
@@ -32,6 +34,7 @@ theme. But don't modify main-style.css file.
     background-color: #D64936;
     color: #FFF;
 }
+
 .btn-google:hover{
     color: #FFF;
     background-color: #c64331;
@@ -39,9 +42,17 @@ theme. But don't modify main-style.css file.
 
 /* Labels */
 .lbl-orange {
-    color: #F88540;
+    color: #F88540 !important;
 }
 
 .lbl-blue {
     color: #80ACDD;
+}
+
+.lbl-blue-hover {
+    color: #80ACDD;
+}
+
+.lbl-blue-hover:hover {
+    color: #5892d2;
 }
