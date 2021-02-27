@@ -13,3 +13,25 @@ theme. But don't modify main-style.css file.
     background-color: #F88540;
     color: #FFF;
 }
+.btn-orange:hover{
+    color: #FFF;
+    background-color: #e0773a;
+}
+
+.btn-fbk {
+    background-color: #3B5998;
+    color: #FFF;
+}
+.btn-fbk:hover{
+    color: #FFF;
+    background-color: #345089;
+}
+
+.btn-google {
+    background-color: #D64936;
+    color: #FFF;
+}
+.btn-google:hover{
+    color: #FFF;
+    background-color: #c64331;
+}
