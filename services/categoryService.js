@@ -24,8 +24,18 @@ async function getCategoryById(id) {
     return category;
 }
 
+async function addProductToCategory(categoryId, productId) {
+    var category = await Category.findById(categoryId)
+    var product = await Product.findById(productId)
+
+    await category.products.push(product);
+
+    return await category.save();
+}
+
 module.exports = {
     getAllCategories,
     getCategoryFromProductId,
     getCategoryById,
+    addProductToCategory
 }
