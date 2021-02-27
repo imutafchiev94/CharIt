@@ -18,7 +18,7 @@ router.get("/:productId/new/", async function (req, res) {
       }else{
         res.render("products/order/newOrder.hbs", { charities, categories: categories, product } );
       }
-    });
+    }).lean();
    
   } catch (message) {
 
@@ -42,9 +42,9 @@ router.get("/:id", function(req,res){
         }else{
           res.render("products/order/orderDetails.hbs", {order : order, categories: categories});
         }
-      });     
+      }).lean();     
     }
-  });
+  }).lean();
 });
 
 router.post("/", async function (req, res) {

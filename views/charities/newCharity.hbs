@@ -5,7 +5,7 @@
           <div class="row">
             <div class="col-md-6 col-md-push-3">
               <h2 class="lbl-orange">Add Charity</h2>
-              <form name="login-form" action="/charities" method="POST" class="form-transparent clearfix">
+              <form name="login-form" action="/charities" method="POST" class="form-transparent clearfix" enctype="multipart/form-data">
                   <div class="row">
                       <div class="form-group col-md-12">
                           <label for="form_title">Title</label>
@@ -48,6 +48,13 @@
                           <input id="form_address" name="charity[address]" class="form-control" type="text" required>
                       </div>
                   </div>
+                  <div class="row">
+                        <div class="form-group col-md-12">
+                             <input type="file" id="actual-btn" name="imageUrl" hidden/>
+                            <label for="actual-btn" class="btn btn-orange">Избери файл</label>
+                            <span id="file-chosen">Няма избрани файлове</span>
+                        </div>
+                    </div>
                   <div class="clear text-center">
                     <button type="submit" class="btn btn-orange btn-lg btn-block no-border">Create</button>
                   </div>
@@ -58,3 +65,13 @@
       </div>
     </div>
 </section>
+
+<script>
+  const actualBtn = document.getElementById('actual-btn');
+  document.getElementById('actual-btn').style.visibility = "hidden";
+const fileChosen = document.getElementById('file-chosen');
+  actualBtn.addEventListener('change', function(){
+  fileChosen.textContent = this.files[0].name
+});
+
+</script>
