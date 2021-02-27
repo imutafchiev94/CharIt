@@ -57,6 +57,11 @@
               </div>
             </div>
           <div class="col-sm-12 col-md-3">
+            {{#if isAuthenticated}}
+              <div class="widget">
+                <a class="btn btn-orange btn-lg btn-block no-border" href="/products/new">Add Product</a>
+              </div>
+            {{/if}}
             <div class="sidebar sidebar-right mt-sm-30">
               <div class="widget">
                 <h5 class="widget-title line-bottom">Search by name</h5>

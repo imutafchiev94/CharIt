@@ -9,6 +9,7 @@ theme. But don't modify main-style.css file.
 
 /* Your custom css codes start here: */
 
+/* Buttons */
 .btn-orange {
     background-color: #F88540;
     color: #FFF;
@@ -34,4 +35,9 @@ theme. But don't modify main-style.css file.
 .btn-google:hover{
     color: #FFF;
     background-color: #c64331;
+}
+
+/* Labels */
+.lbl-orange {
+    color: #F88540;
 }

@@ -15,7 +15,7 @@ router.get("/new/", async function (req, res) {
       if(err){
         res.render("products/order/newOrder.hbs", { charities, message : err });
       }else{
-        res.render("productes/order/newOrder.hbs", { charities, categories: categories } );
+        res.render("products/order/newOrder.hbs", { charities, categories: categories } );
       }
     });
    
