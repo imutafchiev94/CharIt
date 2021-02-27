@@ -12,14 +12,14 @@
               </div>
               <div class="col-md-7">
                 <div class="product-summary">
-                  <h2 class="product-title">Old Boxers</h2>
+                  <h2 class="product-title">{{product.title}}</h2>
   
-                  <div class="price"> <ins><span class="amount">$160.00</span></ins> </div>
+                  <div class="price"> <span class="amount" style="color: #F88540;">{{product.price}} лв.</span> </div>
                   <div class="short-description">
                     <p>Rarely used. Only couple of holes (none on the important parts!). Donec volutpat purus tempor sem molestie, sed blandit lacus posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut posuere mollis nulla ut consectetur.</p>
                   </div>
-                  <div class="tags"><strong>Charity:</strong> Help Nicolas!</div>
-                  <div class="category"><strong>Category:</strong> <a href="#">Jackets</a>, <a href="#">Shirts</a></div>
+                  <div class="tags"><strong>Charity:</strong>{{product.charity.title}}</div>
+                  <div class="category"><strong>Category:</strong> <a href="#">{{product.category.title}}</a></div>
 
                   <div class="cart-form-wrapper mt-30">
                     <form enctype="multipart/form-data" method="post" class="cart">
@@ -38,7 +38,7 @@
                           </tr>
                         </tbody>
                       </table>
-                      <button class="single_add_to_cart_button btn btn-theme-colored" type="submit">Add to cart</button>
+                      <a href="/products/{{product._id}}/order/new" class="single_add_to_cart_button btn btn-orange" type="submit">Buy</a>
                     </form>
                   </div>
                 </div>
@@ -46,13 +46,12 @@
               <div class="col-md-12">
                 <div class="horizontal-tab product-tab">
                   <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+                    <li class="active"><a style="background-color: #F88540;">Description</a></li>
                   </ul>
                   <div class="tab-content">
                     <div class="tab-pane fade in active" id="tab1">
                       <h3>Product Description</h3>
-                      <p>One Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, iste, architecto ullam tenetur quia nemo ratione tempora consectetur quos minus voluptates nisi hic alias libero explicabo reiciendis sint ut quo nulla ipsa aliquid neque molestias et qui sunt. Odit, molestiae. One Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, iste, architecto ullam tenetur quia nemo ratione tempora consectetur quos minus voluptates nisi hic alias libero explicabo reiciendis sint ut quo nulla ipsa aliquid neque molestias et qui sunt. Odit, molestiae.</p>
-                      <p>One Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, iste, architecto ullam tenetur quia nemo ratione tempora consectetur quos minus voluptates nisi hic alias libero explicabo reiciendis sint ut quo nulla ipsa aliquid neque molestias et qui sunt. Odit, molestiae.</p>
+                      <p>{{product.description}}</p>
                     </div>
 
 
