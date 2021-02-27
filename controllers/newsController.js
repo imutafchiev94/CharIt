@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const router = Router();
-var News = require("../models.news.js");
+var News = require("../models/news.js");
 var Category = require("../models/category.js");
 var Charity = require("../models/charity.js");
 
