@@ -8,3 +8,8 @@ theme. But don't modify main-style.css file.
 */
 
 /* Your custom css codes start here: */
+
+.btn-orange {
+    background-color: #F88540;
+    color: #FFF;
+}
