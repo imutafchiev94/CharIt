@@ -18,6 +18,15 @@ router.get('/', async (req, res) => {
     }
     
 });
+router.get('/payments', async (req, res) => {
+    try{
+        let categories = await categoryService.getAllCategories().lean();
+        res.render('payments/payments', {title: 'Payments page', categories});
+    } catch(message) {
+        console.log(message);
+    }
+    
+});
 router.use('/news', newsController);
 router.use('/auth', authController);
 router.use('/products', productController);
