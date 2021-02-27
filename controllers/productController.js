@@ -6,7 +6,7 @@ var orderController = require('./orderController');
 var categoryController = require('./categoryController');
 const categoryService = require('../services/categoryService');
 const userService = require('../services/userService');
-router.use('/order', orderController);
+router.use('/:id/order', orderController);
 router.use('/category', categoryController);
 
 router.get("/", function(req,res){

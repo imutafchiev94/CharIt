@@ -8,7 +8,7 @@ const productService = require('../services/productService');
 
 const router = Router();
 
-router.get("/:id/new/", async function (req, res) {
+router.get("/new/", async function (req, res) {
   try {
     var charities = await charityService.getAll();
     var product = await productService.getProductById(req.params.id);
