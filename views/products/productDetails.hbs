@@ -12,18 +12,18 @@
               </div>
               <div class="col-md-7">
                 <div class="product-summary">
-                  <h2 class="product-title">{{product.title}}</h2>
+                  <h2 class="product-title lbl-blue">{{product.title}}</h2>
   
                   <div class="price"> <span class="amount" style="color: #F88540;">{{product.price}} лв.</span> </div>
                   <div class="short-description">
-                    <p>Rarely used. Only couple of holes (none on the important parts!). Donec volutpat purus tempor sem molestie, sed blandit lacus posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut posuere mollis nulla ut consectetur.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos enim minus ratione sed neque, explicabo placeat libero obcaecati repellendus modi! Consequatur ad ullam, architecto voluptatum eaque natus temporibus unde dignissimos!</p>
                   </div>
                   <div class="tags"><strong>Charity:</strong>{{product.charity.title}}</div>
                   <div class="category"><strong>Category:</strong> <a href="#">{{product.category.title}}</a></div>
 
                   <div class="cart-form-wrapper mt-30">
-                    <form enctype="multipart/form-data" method="post" class="cart">
-                      <input type="hidden" value="productID" name="add-to-cart">
+                    <form action="/products/order/new" enctype="multipart/form-data" method="POST" class="cart">
+                      <input type="hidden" value="{{product._id}}" name="productId">
                       <table class="table variations no-border">
                         <tbody>
                           <tr>
