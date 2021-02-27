@@ -17,10 +17,11 @@ var productSchema = new mongoose.Schema({
     author:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"User"
-    },charity:{
+    },
+    charities:[{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Charity"
-    },
+    }],
     quantity: Number,
     isOnMarketPlace: Boolean,
     imageUrl: String,
