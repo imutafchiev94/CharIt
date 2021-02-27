@@ -116,6 +116,7 @@ router.get("/:id", function (req, res) {
             message: err,
           });
         } else {
+          
           res.render("products/productDetails.hbs", {
             product: product,
             categories: categories,
@@ -123,7 +124,7 @@ router.get("/:id", function (req, res) {
         }
       });
     }
-  }).lean();
+  }).populate("category").populate("charity").lean();
 });
 
 router.get("/:id/edit", function (req, res) {
