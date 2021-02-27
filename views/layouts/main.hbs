@@ -62,7 +62,7 @@
 <![endif]-->
 
 <!-- Page Title -->
-<title>The Royal Charity</title>
+<title>Hope Market</title>
 
 <!-- Favicon and Touch Icons -->
 
@@ -81,7 +81,7 @@
     </div>
 -->
     <header class="header">
-    <div class="header-top bg-theme-colored sm-text-center">
+    {{!-- <div class="header-top bg-theme-colored sm-text-center">
       <div class="container">
         <div class="row">
           <div class="col-md-2">
@@ -102,7 +102,7 @@
                 <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-white"></i> <a class="text-white" href="#">contact@yourdomain.com</a> </li>
               </ul>
             </div>
-          </div>
+          </div> --}}
 
         </div>
       </div>
@@ -116,7 +116,7 @@
               {{#if isAdmin}}
                 <li><a href="/products">Categories</a>
                   <ul class="dropdown">
-                    <li><a href="products/category/new">Add Category</a></li>     
+                    {{!-- <li><a href="products/category/new">Add Category</a></li>      --}}
                           <div class="separator separator-medium-line"> </div>
                         {{#each categories}}
                           <li><a href="/products/category/{{this._id}}/edit">{{this.title}}</a></li>      
@@ -124,10 +124,10 @@
                   </ul>
                 </li>
               {{/if}}
-              <li class="active"><a href="/">Home</a> 
+              {{!-- <li class="active"><a href="/">Home</a> 
 			  <!-- home, market|cats......, charities, news, contacts             login -->
                 
-              </li>
+              </li> --}}
               <li><a href="/products">Market</a>
                 <ul class="dropdown">
 				<!-- TODO: Cycle categories -->
@@ -138,7 +138,7 @@
               </li>
 			   <li><a href="/charities">Charities</a> 
 			   <li><a href="/news">News</a> 
-			   <li><a href="#contact">Contact Us</a> 
+			   {{!-- <li><a href="#contact">Contact Us</a>  --}}
 			   
 			 <li><a href="#market"><img src="/images/avatar.png"></a>
                 <ul class="dropdown">
