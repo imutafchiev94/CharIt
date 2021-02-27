@@ -1,6 +1,7 @@
 const {Router} = require('express');
 
 const router = Router();
+const authController = require('./controllers/authController');
 const charityController = require('./controllers/charityController');
 const productController = require('./controllers/productController');
 const userController = require('./controllers/userController');
@@ -9,8 +10,8 @@ const categoryService = require('./services/categoryService');
 
 router.get('/', async (req, res) => {
     try{
-        var catergories = await categoryService.getAllCategories();
-        res.render('home/index', {title: 'Home page'});
+        let categories = await categoryService.getAllCategories().lean();
+        res.render('home/index', {title: 'Home page', categories});
     } catch(message) {
         console.log(message);
     }
@@ -19,6 +20,7 @@ router.get('/', async (req, res) => {
 router.get('/news', (req, res) => {
     res.render('news/news');
 })
+router.use('/auth', authController);
 router.use('/products', productController);
 router.use('/charities', charityController);
 router.use('/user', userController);
