@@ -4,5 +4,8 @@ module.exports = {
     },
     isProductAuthor: (user, productId) => {
         return user.products.includes(productId);
+    },
+    sum: (price, quantity) => {
+        return price * quantity;
     }
 }

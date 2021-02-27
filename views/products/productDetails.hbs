@@ -6,7 +6,7 @@
               <div class="col-md-5">
                 <div class="product-image">
                   <div class="zoom-gallery">
-                    <a href="http://placehold.it/320x360" title="Title Here 1"><img src="http://placehold.it/320x360" alt=""></a>
+                    <a href="{{product.imageUrl}}" title="{{product.title}}"><img src="{{product.imageUrl}}" alt="image"></a>
                   </div>
                 </div>
               </div>
@@ -38,7 +38,10 @@
                           </tr>
                         </tbody>
                       </table>
-                      <a href="/products/order/{{product._id}}/new" class="single_add_to_cart_button btn btn-orange" type="submit">Buy</a>
+                      <a href="/products/order/{{product._id}}/new" class="single_add_to_cart_button btn btn-orange">Buy</a>
+                      {{!-- {{#if isProductAuthor}} --}}
+                      <a href="/products/{{product._id}}/edit" class="single_add_to_cart_button btn btn-orange pull-right">Edit</a>
+                      {{!-- {{/if}} --}}
                     </form>
                   </div>
                 </div>
@@ -46,9 +49,9 @@
               <div class="col-md-12">
                 <div class="horizontal-tab product-tab">
                   <ul class="nav nav-tabs">
-                    <li class="active"><a style="background-color: #F88540;">Description</a></li>
+                    {{!-- <li class="active"><a style="background-color: #F88540;">Description</a></li> --}}
                   </ul>
-                  <div class="tab-content">
+                  <div class="tab-content pt-0">
                     <div class="tab-pane fade in active" id="tab1">
                       <h3>Product Description</h3>
                       <p>{{product.description}}</p>

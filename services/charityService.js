@@ -3,12 +3,12 @@ const User = require('../models/user');
 const Target = require('../models/target');
 
 async function getAll() {
-    let charities = await Charity.find({deletedAt: null}).populate("targets").lean();
+    let charities = await Charity.find({deletedAt: null}).populate("target").lean();
     return charities;
 }
 
 async function getOneById (id) {
-    let charity = await Charity.findById(id).populate("targets").lean();
+    let charity = await Charity.findById(id).populate("target").lean();
     return charity;
 }
 

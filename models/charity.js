@@ -13,10 +13,10 @@ var charitySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    targets:[{
+    target:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Target"
-    }],
+    },
     email: {
         type: String,
         required: true,

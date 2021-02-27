@@ -12,10 +12,10 @@
                     <div class="product">
                       <span class="tag-sale">Honorable cause!</span>
                       <div class="product-thumb"> 
-                        <img alt="product" src="{{this.avatar}}" class="img-responsive img-fullwidth">
+                        <img alt="product" src="{{this.imageUrl}}" class="img-responsive img-fullwidth">
                         <div class="overlay">
                           <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Buy it</a>
+                            <a class="btn btn-orange btn-sm pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="/products/order/{{this._id}}/new">Buy it</a>
                           </div>
                           <div class="btn-product-view-details">
                             <a class="btn btn-default btn-theme-colored btn-sm pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="/products/{{this._id}}">Details</a>
@@ -23,16 +23,13 @@
                         </div>
                       </div>
                       <div class="product-details text-center">
-                        <a href="/products/{{this._id}}"><h5 class="product-title">{{this.title}}</h5></a>
-                        <div class="price"><ins><span class="amount">{{this.price}}лв.</span></ins></div>
+                        <a href="/products/{{this._id}}"><h5 class="product-title lbl-blue-hover">{{this.title}}</h5></a>
+                        <div class="price"><ins><span class="amount lbl-orange">{{this.price}} лв.</span></ins></div>
                       </div>
                     </div>
                   </div>
                 {{/each}}
                   
-                
-                                 
-                 
                 
 
 
@@ -49,10 +46,6 @@
                       </ul>
                     </nav>
                   </div>
-				  
-				  
-				  
-				  
                 </div>
               </div>
             </div>
@@ -76,18 +69,17 @@
                   </form>
                 </div>
               </div>
-			  
 			  <!-- категории -->
-            {{#each categories}}
               <div class="widget">
                 <h5 class="widget-title line-bottom">Categories</h5>
                 <div class="categories">
                   <ul class="list list-border angle-double-right">
+            {{#each categories}}
                     <li><a href="#">{{this.title}}<span>({{this.products.length}})</span></a></li>
+          {{/each}}
                   </ul>
                 </div>
               </div>
-          {{/each}}
 			  
 			  <!-- благородностти -->
               <div class="widget">

@@ -7,8 +7,15 @@ var categoryController = require("./categoryController");
 const categoryService = require("../services/categoryService");
 const userService = require("../services/userService");
 const charityService = require("../services/charityService");
+const cloudinary = require("cloudinary").v2
+const cloudinaryConfig = require('../config/cloudinaryConfig');
+const multipart = require('connect-multiparty');
 router.use("/order", orderController);
 router.use("/category", categoryController);
+
+const multipartMiddleware = multipart();
+
+cloudinary.config(cloudinaryConfig);
 
 router.get("/", function (req, res) {
   Product.find({ deletedAt: null }, function (err, products) {
@@ -44,11 +51,13 @@ router.get("/new", async function (req, res) {
   }
 });
 
-router.post("/", async function (req, res) {
+router.post("/", multipartMiddleware, async function (req, res) {
   var title = req.body.product.title;
   var description = req.body.product.description;
   var price = req.body.product.price;
   var quantity = req.body.product.quantity;
+  
+  
   //TODO:ADD MORE
 
   try {
@@ -56,6 +65,9 @@ router.post("/", async function (req, res) {
     var category = await categoryService.getCategoryById(
       req.body.product.category
     );
+    var image = req.files.avatar.path;
+     
+    var charity = await charityService.getOneById(req.body.product.charity);
     var newProduct = {
       title: title,
       author: user,
@@ -65,7 +77,16 @@ router.post("/", async function (req, res) {
       quantity: quantity,
       createdAt: Date.now(),
       createdBy: req.user._id,
+      charity: charity,
+      imageUrl: "",
     };
+
+    await cloudinary.uploader.upload(image, {resource_type: "image"}).
+    then(function(file) {
+      
+      newProduct.imageUrl = file.url}).
+     catch(function(err) {console.log(err)});
+
 
     Product.create(newProduct, function (err, product) {
       if (err) {
@@ -95,14 +116,15 @@ router.get("/:id", function (req, res) {
             message: err,
           });
         } else {
+          
           res.render("products/productDetails.hbs", {
             product: product,
             categories: categories,
           });
         }
-      });
+      }).lean();
     }
-  }).lean();
+  }).populate("category").populate("charity").lean();
 });
 
 router.get("/:id/edit", function (req, res) {
