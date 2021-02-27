@@ -1,68 +1,68 @@
 <section id="home" class="divider parallax fullscreen layer-overlay overlay-white-9" data-bg-img="https://camcare.org.au/wp-content/uploads/2018/02/camcare-donate.jpg">
-      <div class="display-table">
-        <div class="display-table-cell">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-6 col-md-push-3">
-                <h2 class="lbl-orange">Add Product</h2>
-                <form name="login-form" action="/products" method="POST" class="form-transparent clearfix" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="form_title">Title</label>
-                            <input id="form_title" name="product[title]" class="form-control" type="text" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="form_description">Description</label>
-                            <input id="form_description" name="product[description]" class="form-control" type="text" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="form_price">Price</label>
-                            <input id="form_price" name="product[price]" class="form-control" type="text" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="form_quantity">Quantity</label>
-                            <input id="form_quantity" name="product[quantity]" class="form-control" type="number" min="1" max="99" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="form_category">Category</label>
-                            <select id="form_category" class="form-control" name="product[category]">
-                                {{#each categories}}
-                                    <option value="{{this._id}}" >{{this.title}}</option>
-                                {{/each}}
-                            </select> 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="form_charity">Charity</label>
-                            <select id="form_charity" class="form-control" name="product[charity]">
-                                {{#each charities}}
-                                    <option value="{{this._id}}">{{this.title}}</option>
-                                {{/each}}
-                            </select> 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="form_avatar">Picture</label>
-                            <input name="avatar" type="file" id="form_avatar">
-                        </div>
-                    </div>
-                    <div class="clear text-center">
+    <div class="display-table">
+      <div class="display-table-cell">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-md-push-3">
+              <h2 class="lbl-orange">Add Product</h2>
+              <form name="login-form" action="/products" method="POST" class="form-transparent clearfix" enctype="multipart/form-data">
+                  <div class="row">
+                      <div class="form-group col-md-12">
+                          <label for="form_title">Title</label>
+                          <input id="form_title" name="product[title]" class="form-control" type="text" required>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-md-12">
+                          <label for="form_description">Description</label>
+                          <input id="form_description" name="product[description]" class="form-control" type="text" required>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-md-12">
+                          <label for="form_price">Price</label>
+                          <input id="form_price" name="product[price]" class="form-control" type="text" required>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-md-12">
+                          <label for="form_quantity">Quantity</label>
+                          <input id="form_quantity" name="product[quantity]" class="form-control" type="number" min="1" max="99" required>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-md-12">
+                          <label for="form_category">Category</label>
+                          <select id="form_category" class="form-control" name="product[category]">
+                              {{#each categories}}
+                                  <option value="{{this._id}}" >{{this.title}}</option>
+                              {{/each}}
+                          </select> 
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-md-12">
+                          <label for="form_charity">Charity</label>
+                          <select id="form_charity" class="form-control" name="product[charity]">
+                              {{#each charities}}
+                                  <option value="{{this._id}}">{{this.title}}</option>
+                              {{/each}}
+                          </select> 
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-md-12">
+                          <label for="form_avatar">Picture</label>
+                          <input name="avatar" type="file" id="form_avatar">
+                      </div>
+                  </div>
+                  <div class="clear text-center">
                     <button type="submit" class="btn btn-orange btn-lg btn-block no-border">Create</button>
-                    </div>
-                </form>
-              </div>
+                  </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+</section>

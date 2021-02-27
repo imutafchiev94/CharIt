@@ -1,10 +1,9 @@
 <h2>{{message}}</h2>
-{#with target}}
-<form action="/charities/{{charity._id}}/target" method="POST">
-  <input type="text" name="target[title]" value="{{title}}" />
-  <input type="text" name="target[description]" value="{{description}}" />
-  <input type="text" name="target[targetSum]" value="{{targetSum}}" />
-
-  <button type="submit">Save</button>
+{{#with target}}
+  <form action="/charities/{{charity._id}}/target" method="POST">
+    <input type="text" name="target[title]" value="{{title}}" />
+    <input type="text" name="target[description]" value="{{description}}" />
+    <input type="text" name="target[targetSum]" value="{{targetSum}}" />
+    <button type="submit">Save</button>
   </form>
 {{/with}}
