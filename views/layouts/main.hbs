@@ -253,7 +253,7 @@
                   var $mailchimpform = $('#mailchimp-subscription-form-footer'),
                       $response = '';
                   $mailchimpform.children(".alert").remove();
-                  console.log(resp);
+                  {{!-- console.log(resp); --}}
                   if (resp.result === 'success') {
                       $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
                   } else if (resp.result === 'error') {

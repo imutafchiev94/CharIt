@@ -32,7 +32,7 @@ passport.use(
       if (!user) {
         let role = await Role.findOne({name: 'user'});
         const { email, name, first_name, last_name, picture } = profile._json;
-        console.log(picture);
+      
         const userData = {
           username: email,
           firstName: first_name,
@@ -145,7 +145,7 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/login' }),
   async function(req, res) {
     try {
-      console.log(req.user);
+      
       let user = await userService.getUserByEmail(req.user.emails[0].value);
       let token = jwt.sign(
         {_id: user._id, username: req.user.displayName, role: user.role.name, charities: user.charities.map(a => a.authorId), products: user.products.map(a => a.authorId), avatar: user.avatar},

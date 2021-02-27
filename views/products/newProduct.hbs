@@ -5,7 +5,7 @@
             <div class="row">
               <div class="col-md-6 col-md-push-3">
                 <h2 class="lbl-orange">Add Product</h2>
-                <form name="login-form" action="/products" method="POST" class="form-transparent clearfix">
+                <form name="login-form" action="/products" method="POST" class="form-transparent clearfix" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label for="form_title">Title</label>
@@ -45,7 +45,7 @@
                             <label for="form_charity">Charity</label>
                             <select id="form_charity" class="form-control" name="product[charity]">
                                 {{#each charities}}
-                                    <option value="{{this.target._id}}">{{this.title}}</option>
+                                    <option value="{{this._id}}">{{this.title}}</option>
                                 {{/each}}
                             </select> 
                         </div>
