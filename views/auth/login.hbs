@@ -6,12 +6,12 @@
               <div class="col-md-6 col-md-push-3">
                 <div class="text-center mb-60"><a href="#" class=""><img alt="" src="images/logo-wide.png"></a></div>
                 <h3>{{message.message}}</h3>
-                <h4 class="text-theme-colored mt-0 pt-5"> Login</h4>
+                <h4 class="text-theme-colored mt-0 pt-5">LOGIN</h4>
 
                 <form name="login-form" action="/auth/login" method="POST" class="form-transparent clearfix">
                   <div class="row">
                     <div class="form-group col-md-12">
-                      <label for="form_username_email">Username/Email</label>
+                      <label for="form_username_email">Username</label>
                       <input id="form_username_email" name="username" class="form-control" type="text">
                     </div>
                   </div>
@@ -21,20 +21,21 @@
                       <input id="form_password" name="password" class="form-control" type="password">
                     </div>
                   </div>
-                  <div class="checkbox pull-left mt-15">
-                    <label for="form_checkbox">
-                      <input id="form_checkbox" name="form_checkbox" type="checkbox">
-                      Remember me </label>
+                  <div class="row pl-15 pr-15">
+                    <div class="checkbox pull-left">
+                      <label for="form_checkbox"><input id="form_checkbox" name="form_checkbox" type="checkbox">Remember me </label>
+                    </div>
+                    <div class="clear text-center">
+                      <a class="text-theme-colored font-weight-600 font-12 pull-right" href="#">Forgot Your Password?</a>
+                    </div>
                   </div>
-                  <div class="form-group pull-right mt-10">
-                    <button type="submit" class="btn btn-dark btn-sm">Login</button>
-                  </div>
-                  <div class="clear text-center pt-10">
-                    <a class="text-theme-colored font-weight-600 font-12" href="#">Forgot Your Password?</a>
-                  </div>
-                  <div class="clear text-center pt-10">
-                    <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" href="/auth/login/facebook" data-bg-color="#3b5998">Login with facebook</a>
-                    <a class="btn btn-dark btn-lg btn-block no-border" href="#" data-bg-color="#00acee">Login with twitter</a>
+                  <div class="clear text-center">
+                    <button type="submit" class="btn btn-orange btn-lg btn-block no-border">Login</button>
+                    <div class="separator">
+                      <span>or</span>
+                    </div>
+                    <a class="btn btn-fbk btn-lg btn-block no-border mt-15 mb-15" href="/auth/login/facebook"><ion-icon class="pull-left" name="logo-facebook" size="large"></ion-icon>Login with Facebook</a>
+                    <a class="btn btn-google btn-lg btn-block no-border" href="/auth/login/google"><ion-icon class="pull-left" name="logo-google" size="large"></ion-icon>Login with Google</a>
                   </div>
                 </form>
               </div>
@@ -43,18 +44,3 @@
         </div>
       </div>
     </section>
-
-
-
-
-
-<form action="/auth/login" method="POST">
-  <input type="text" placeholder="username" name="username" />
-  <input type="password" placeholder="password" name="password" />
-  <button type="submit">Log In</button>
-
-  <a href="#">Forgot Your Password?</a>
-
-  <a href="/auth/login/facebook">Facebook</a>
-  <a href="/auth/login/google">Gmail</a>
-</form>
