@@ -16,12 +16,12 @@ router.get("/new/", async function (req, res) {
       if(err){
         res.render("products/order/newOrder.hbs", { charities, message : err });
       }else{
-        res.render("productes/order/newOrder.hbs", { charities, categories: categories, product } );
+        res.render("products/order/newOrder.hbs", { charities, categories: categories, product : product } );
       }
     });
    
   } catch (message) {
-
+    console.log(message.message);
     Category.find({ deletedAt : null }, function(err, categories){
       if(!err){
         res.render("products/order/newOrder.hbs", { charities, message, categories });

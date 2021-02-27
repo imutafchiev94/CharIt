@@ -1,3 +1,56 @@
+<section id="home" class="divider parallax fullscreen layer-overlay overlay-white-9" data-bg-img="http://placehold.it/1920x1280">
+      <div class="display-table">
+        <div class="display-table-cell">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-md-push-3">
+                <h2 class="lbl-orange">Add Product</h2>
+                <form name="login-form" action="/auth/login" method="POST" class="form-transparent clearfix">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="form_username_email">Title</label>
+                            <input id="form_username_email" name="product[title]" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="form_username_email">Description</label>
+                            <te id="form_username_email" name="product[description]" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="form_username_email">Price</label>
+                            <input id="form_username_email" name="product[price]" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="form_username_email">Quantity</label>
+                            <input id="form_username_email" name="product[quantity]" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="form_username_email">Category</label>
+                            <input id="form_username_email" name="product[category]" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="clear text-center">
+                    <button type="submit" class="btn btn-orange btn-lg btn-block no-border">Create</button>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
 <h2>{{message}}</h2>
 <form action="/products" method="POST">
     <input type="text" name="product[title]" placeholder="title"></input>
