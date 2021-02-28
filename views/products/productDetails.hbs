@@ -15,22 +15,15 @@
                 <div class="widget">
                   <h5 class="widget-title line-bottom">Charities you can support</h5>
                   <div class="owl-carousel-1col" data-dots="true">
+                    {{#each product.charities}}
                     <div class="item">
-                      <img src="https://placehold.it/365x230" alt="">
-                      <h4 class="title">This is a Demo Title</h4>
+                      <img src="{{this.imageUrl}}" alt="charity">
+                      <h4 class="title">{{this.title}}</h4>
                     </div>
-                    <div class="item">
-                      <img src="https://placehold.it/365x230" alt="">
-                      <h4 class="title">This is a Demo Title</h4>
-                    </div>
-                    <div class="item">
-                      <img src="https://placehold.it/365x230" alt="">
-                      <h4 class="title">This is a Demo Title</h4>
-                    </div>
+                    {{/each}}
                   </div>
                 </div>
               </div>
-
             <div class="product-summary">
               <div class="row">
                 <div class="col-lg-5">              
