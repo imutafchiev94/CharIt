@@ -2,7 +2,7 @@
   <div class="container">
     <div class="section-content">
       <div class="row mt-30">
-        <form id="checkout-form" action="/products/order/{{product._id}}">
+        <form id="checkout-form" action="/products/order/" method="POST">
           <div class="col-md-6">
             <div class="billing-details">
               <h3 class="mb-30 lbl-orange">Billing Details</h3>
@@ -113,6 +113,7 @@
                   <td>&nbsp;</td>
                   <td>
                     {{sum product.price product.quantity}} lv.
+                    <input type="number" name="sum" hidden value="{{sum product.price product.quantity}}">
                   </td>
                 </tr>
               </tbody>
@@ -136,7 +137,7 @@
             </div>
           </div>
           <div class="col-md-12">
-            <div class="text-right"><a href="/products/order/{{product._id}}/details" class="btn btn-orange">Place Order</a> </div>
+            <div class="text-right"><button type="submit" class="btn btn-orange">Place Order</button></div>
           </div>
         </form>
       </div>

@@ -52,9 +52,9 @@ router.post("/", async function (req, res) {
   try {
     var sum = req.body.sum;
     var user = req.user._id;
-    var product = req.params.productId;
-    var target = req.body.target;
-    var charity = await charityService.getCharityByTargetId(req.body.target)
+    var product = await productService.getProductById(req.params.productId);
+    //var target = req.body.target;
+    // var charity = await charityService.getCharityByTargetId(req.body.target)
     var createdBy = req.user.username;
     var updatedBy = req.user.username;
     var createdAt = Date.now();
@@ -63,8 +63,8 @@ router.post("/", async function (req, res) {
       sum: sum,
       user: user,
       product: product,
-      target: target,
-      charity: charity,
+      //target: target,
+      // charity: charity,
       createdBy: createdBy,
       updatedBy: updatedBy,
       createdAt: createdAt,
@@ -73,9 +73,10 @@ router.post("/", async function (req, res) {
 
     order.create(newOrder, function (err, target) {
       if (err) {
+        console.log(err);
         res.redirect("/products", {message : err});
       } else {
-        res.redirect("/products");
+        res.redirect(`/products/order/${target._id}`);
       }
     });
   } catch (message) {
