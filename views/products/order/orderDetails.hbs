@@ -1,10 +1,7 @@
-{{#with order}}
-    <p>Target: {{target.title}}</p>
-    <p>Sum: {{sum}}</p>
-    <p>Product: {{product.title}}</p>
-    <p>Charity: {{charity.title}}</p>
+<section class="divider parallax fullscreen">
+    <div class="container">
+        <h1>Thank you for your purchase</h1>
+        <div><h2>The amount you have paid will go directly to <span class="lbl-orange">Red Cross Bulgaria</b></h2></div>
+    </div>
+</section>
 
-<form action="/products/{{product._id}}/order/{{_id}}/delete" method="post">
-    <button type="submit">Delete order</button>
-</form>
-{{/with}}
