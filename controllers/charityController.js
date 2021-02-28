@@ -41,10 +41,17 @@ router.get("/new", function (req, res) {
     if (err) {
       res.render("charities/newCharity.hbs", { categories });
     } else {
-      res.render("charities/newCharity.hbs", {
-        categories: categories,
-        charities,
-      });
+        Charity.find({}, (err, charities) => {
+            if(err) {
+                throw err;
+            }
+            else {
+                res.render("charities/newCharity.hbs", {
+                    categories: categories,
+                    charities,
+                  });
+            }
+        }).lean();
     }
   }).lean();
 });
