@@ -1,3 +1,23 @@
+  <style>
+  #custom-handle {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+  }
+  
+    #custom-handle2 {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+  }
+  </style>
+
 <section>
   <div class="container">
     <div class="section-content">
@@ -120,6 +140,21 @@
             </table>
           </div>
           <div class="col-md-12">
+            <h3 class="lbl-orange">Choose where to donate your money</h3>
+            <div class="panel panel-default pl-20 pr-50 pb-20">
+              <div class="panel-body">
+             	  <h4 class="lbl-blue">Red Cross</h4>
+                <div id="slider">
+                  <div id="custom-handle" class="ui-slider-handle"></div>    
+                </div>
+             	  <h4 class="lbl-blue">Mother & Child</h4>
+                <div id="slider2">
+                  <div id="custom-handle2" class="ui-slider-handle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
             <h3 class="lbl-orange">Payment Information</h3>
             <div class="payment-method">
               <div class="radio">
@@ -143,4 +178,52 @@
       </div>
     </div>
   </div>
+
+  <script>
+ var maxValue = {{sum product.price product.quantity}};
+    var handle = $( "#custom-handle" );	
+    var handle2 = $( "#custom-handle2" );
+	  
+	  
+  $( function() {
+  handle = $( "#custom-handle" );	
+    $( "#slider" ).slider({
+		max: maxValue,
+		value: maxValue,
+      create: function() {
+        handle.text( $( this ).slider( "value" ) );
+
+      },
+      slide: function( event, ui ) {
+        handle.text( ui.value );
+		
+		$( "#slider2" ).slider({
+			  value: maxValue - ui.value
+		});
+			handle2.text( maxValue - ui.value);
+      }
+    });
+  } );
+  
+  
+    $( function() {
+handle2 = $( "#custom-handle2" );
+    $( "#slider2" ).slider({
+	max: maxValue,
+      create: function() {
+        handle2.text( $( this ).slider( "value" ) );
+      },
+      slide: function( event, ui ) {
+        handle2.text( ui.value );
+	
+		$( "#slider" ).slider({
+			  value: maxValue - ui.value
+		});
+		
+		handle.text( maxValue - ui.value);
+      }
+    });
+  } );
+
+  </script>
 </section>
