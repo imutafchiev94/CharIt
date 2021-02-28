@@ -1,6 +1,6 @@
   <style>
-  #custom-handle {
-    width: 3em;
+    #custom-handle {
+    width: 4em;
     height: 1.6em;
     top: 50%;
     margin-top: -.8em;
@@ -9,7 +9,7 @@
   }
   
     #custom-handle2 {
-    width: 3em;
+    width: 4em;
     height: 1.6em;
     top: 50%;
     margin-top: -.8em;
@@ -112,7 +112,7 @@
                   <td class="product-thumbnail"><a href="#"><img alt="member" src="{{product.imageUrl}}"></a></td>
                   <td><a href="#"></a>{{product.title}}</td>
                   <td><span>{{product.quantity}}</span></td>
-                  <td>{{product.price}} lv.</td>
+                  <td>{{formatPrice product.price}} lv.</td>
                 </tr>
                 {{!-- {{/each}} --}}
                 {{!-- <tr>
@@ -145,11 +145,11 @@
               <div class="panel-body">
              	  <h4 class="lbl-blue">Red Cross</h4>
                 <div id="slider">
-                  <div id="custom-handle" class="ui-slider-handle"></div>    
+                  <div id="custom-handle" class="ui-slider-handle slider-orange"></div>    
                 </div>
              	  <h4 class="lbl-blue">Mother & Child</h4>
                 <div id="slider2">
-                  <div id="custom-handle2" class="ui-slider-handle"></div>
+                  <div id="custom-handle2" class="ui-slider-handle slider-orange"></div>
                 </div>
               </div>
             </div>
@@ -179,37 +179,37 @@
     </div>
   </div>
 
-  <script>
- var maxValue = {{sum product.price product.quantity}};
-    var handle = $( "#custom-handle" );	
-    var handle2 = $( "#custom-handle2" );
-	  
-	  
+<script>
+  var maxValue = {{sum product.price product.quantity}};
+  var handle = $( "#custom-handle" );	
+  var handle2 = $( "#custom-handle2" );
+	
   $( function() {
   handle = $( "#custom-handle" );	
     $( "#slider" ).slider({
 		max: maxValue,
+    {{!-- step: 0.01, --}}
 		value: maxValue,
       create: function() {
         handle.text( $( this ).slider( "value" ) );
-
       },
       slide: function( event, ui ) {
         handle.text( ui.value );
-		
 		$( "#slider2" ).slider({
 			  value: maxValue - ui.value
 		});
-			handle2.text( maxValue - ui.value);
+    var sum = (maxValue - ui.value).toFixed(2);
+			handle2.text(sum);
       }
     });
   } );
   
-  
     $( function() {
-handle2 = $( "#custom-handle2" );
+    handle2 = $( "#custom-handle2" );
     $( "#slider2" ).slider({
-	max: maxValue,
+
+	    max: maxValue,
+      {{!-- step: 0.01, --}}
       create: function() {
         handle2.text( $( this ).slider( "value" ) );
       },
@@ -219,8 +219,8 @@ handle2 = $( "#custom-handle2" );
 		$( "#slider" ).slider({
 			  value: maxValue - ui.value
 		});
-		
-		handle.text( maxValue - ui.value);
+		var sum = (maxValue - ui.value).toFixed(2);
+		handle.text(sum);
       }
     });
   } );

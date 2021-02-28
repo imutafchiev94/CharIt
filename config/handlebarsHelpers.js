@@ -6,6 +6,9 @@ module.exports = {
         return user.products.includes(productId);
     },
     sum: (price, quantity) => {
-        return price * quantity;
+        return (price * quantity).toFixed(2);
+    },
+    formatPrice: (price) => {
+        return price.toFixed(2);
     }
 }

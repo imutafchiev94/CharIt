@@ -10,6 +10,7 @@ theme. But don't modify main-style.css file.
 /* Your custom css codes start here: */
 
 /* Buttons */
+
 .btn-orange {
     background-color: #F88540;
     border-color: #F88540;
@@ -43,6 +44,7 @@ theme. But don't modify main-style.css file.
 }
 
 /* Labels */
+
 .lbl-orange {
     color: #F88540 !important;
 }
@@ -57,4 +59,18 @@ theme. But don't modify main-style.css file.
 
 .lbl-blue-hover:hover {
     color: #5892d2;
+}
+
+/* Sliders */
+
+.slider-orange {
+    background-color: #F88540 !important;
+    color: #FFF !important;
+    border-color: #F88540 !important;
+}
+
+.slider-orange:hover {
+    background-color: #e0773a !important;
+    color: #FFF !important;
+    border-color: #e0773a !important;
 }
